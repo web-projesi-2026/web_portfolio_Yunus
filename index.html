@@ -4,329 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yunus Barış — Portfolyo</title>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-  <!-- CURSOR -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-trail" id="cursorTrail"></div>
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="nav-logo">YB<span class="dot">.</span></div>
-    <ul class="nav-links">
-      <li><a href="#about" data-page="about">Hakkımda</a></li>
-      <li><a href="#skills" data-page="skills">Beceriler</a></li>
-      <li><a href="#projects" data-page="projects">Projeler</a></li>
-      <li><a href="#contact" data-page="contact">İletişim</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
-    </div>
-  </nav>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-logo">YB<span class="dot">.</span></div>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#about" class="mobile-link">Hakkımda</a></li>
-      <li><a href="#skills" class="mobile-link">Beceriler</a></li>
-      <li><a href="#projects" class="mobile-link">Projeler</a></li>
-      <li><a href="#contact" class="mobile-link">İletişim</a></li>
-    </ul>
+  <ul class="nav-links">
+    <li><a href="#about">Hakkımda</a></li>
+    <li><a href="#skills">Beceriler</a></li>
+    <li><a href="#projects">Projeler</a></li>
+    <li><a href="#contact">İletişim</a></li>
+  </ul>
+
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
   </div>
+</nav>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="noise-overlay"></div>
-    <canvas id="bgCanvas"></canvas>
-    <div class="hero-content">
-      <div class="hero-tag reveal-up" style="--delay:0.1s">Bilgisayar Programcılığı Öğrencisi</div>
-      <h1 class="hero-name reveal-up" style="--delay:0.3s">
-        <span class="line">Yunus</span>
-        <span class="line italic">Barış</span>
-      </h1>
-      <p class="hero-sub reveal-up" style="--delay:0.5s">
-        Kod yazıyorum, dünya kuruyorum.<br/>
-        Her satır bir fırça darbesi.
-      </p>
-      <div class="hero-cta reveal-up" style="--delay:0.7s">
-        <a href="#projects" class="btn-primary">Projeleri Gör</a>
-        <a href="#contact" class="btn-ghost">İletişime Geç</a>
-      </div>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-tag">Bilgisayar Programcılığı Öğrencisi</div>
+
+    <h1 class="hero-name">
+      <span>Yunus</span>
+      <span class="italic">Barış</span>
+    </h1>
+
+    <p class="hero-sub">
+      Kod yazıyorum, dünya kuruyorum.<br/>
+      Satır bir fırça darbesi.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">Projeleri Gör</a>
+      <a href="#contact" class="btn-ghost">İletişime Geç</a>
     </div>
-    <div class="scroll-indicator">
-      <span>Kaydır</span>
-      <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about-section" id="about">
+  <div class="section-inner">
+    <h2 class="section-title">Merhaba, ben <em>Yunus Barış</em></h2>
+    <p class="about-desc">
+      Bilgisayar programcılığı öğrencisiyim. Kod yazmayı bir sanat olarak görüyorum.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner">
+    <h2 class="section-title">İletişim</h2>
+
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Adınız" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <textarea id="message" placeholder="Mesaj"></textarea>
+      <button type="submit" id="submitBtn">Gönder</button>
+    </form>
+
+    <div id="formSuccess" class="form-success">
+      Mesaj gönderildi!
     </div>
-    <div class="hero-deco">
-      <div class="deco-circle c1"></div>
-      <div class="deco-circle c2"></div>
-      <div class="deco-num">01</div>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section class="section about-section" id="about">
-    <div class="section-inner">
-      <div class="section-label">— Hakkımda</div>
-      <div class="about-grid">
-        <div class="about-text">
-          <h2 class="section-title reveal-up">Merhaba, ben<br/><em>Yunus Barış</em></h2>
-          <p class="about-desc reveal-up" style="--delay:0.15s">
-            Bilgisayar programcılığı öğrencisiyim. Kod yazmayı sadece bir meslek olarak değil,
-            bir sanat formu olarak görüyorum. Temiz, okunabilir ve estetik kodlar üretmeye
-            çalışıyorum.
-          </p>
-          <p class="about-desc reveal-up" style="--delay:0.25s">
-            Web geliştirme, algoritma tasarımı ve yazılım mimarisi üzerine kendimi geliştiriyorum.
-            Her proje, yeni bir şey öğrenmek için bir fırsattır.
-          </p>
-          <div class="about-stats reveal-up" style="--delay:0.35s">
-            <div class="stat">
-              <span class="stat-num" data-target="12">0</span>
-              <span class="stat-label">Tamamlanan Proje</span>
-            </div>
-            <div class="stat">
-              <span class="stat-num" data-target="5">0</span>
-              <span class="stat-label">Programlama Dili</span>
-            </div>
-            <div class="stat">
-              <span class="stat-num" data-target="2">0</span>
-              <span class="stat-label">Yıl Deneyim</span>
-            </div>
-          </div>
-        </div>
-        <div class="about-visual reveal-up" style="--delay:0.2s">
-          <div class="avatar-frame">
-            <div class="avatar-inner">
-              <div class="avatar-initials">YB</div>
-              <div class="avatar-ring r1"></div>
-              <div class="avatar-ring r2"></div>
-              <div class="avatar-ring r3"></div>
-            </div>
-            <div class="floating-badge b1"><span>HTML</span></div>
-            <div class="floating-badge b2"><span>CSS</span></div>
-            <div class="floating-badge b3"><span>JS</span></div>
-            <div class="floating-badge b4"><span>Python</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section skills-section" id="skills">
-    <div class="section-inner">
-      <div class="section-label">— Beceriler</div>
-      <h2 class="section-title reveal-up">Araç Kutum</h2>
-      <div class="skills-grid">
-        <div class="skill-card reveal-up" style="--delay:0.05s">
-          <div class="skill-icon">⟨/⟩</div>
-          <h3>Frontend</h3>
-          <p>HTML, CSS, JavaScript ile modern, duyarlı arayüzler</p>
-          <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
-          <span class="skill-pct">85%</span>
-        </div>
-        <div class="skill-card reveal-up" style="--delay:0.1s">
-          <div class="skill-icon">⚙</div>
-          <h3>Backend</h3>
-          <p>Python, Node.js ile sunucu tarafı geliştirme</p>
-          <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
-          <span class="skill-pct">70%</span>
-        </div>
-        <div class="skill-card reveal-up" style="--delay:0.15s">
-          <div class="skill-icon">∑</div>
-          <h3>Algoritmalar</h3>
-          <p>Veri yapıları ve algoritma analizi</p>
-          <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
-          <span class="skill-pct">75%</span>
-        </div>
-        <div class="skill-card reveal-up" style="--delay:0.2s">
-          <div class="skill-icon">◎</div>
-          <h3>Veritabanı</h3>
-          <p>SQL, temel veritabanı yönetimi</p>
-          <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
-          <span class="skill-pct">65%</span>
-        </div>
-        <div class="skill-card reveal-up" style="--delay:0.25s">
-          <div class="skill-icon">⌥</div>
-          <h3>Araçlar</h3>
-          <p>Git, VS Code, terminal kullanımı</p>
-          <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
-          <span class="skill-pct">80%</span>
-        </div>
-        <div class="skill-card reveal-up" style="--delay:0.3s">
-          <div class="skill-icon">✦</div>
-          <h3>Problem Çözme</h3>
-          <p>Analitik düşünme ve yaratıcı çözümler</p>
-          <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
-          <span class="skill-pct">90%</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="section projects-section" id="projects">
-    <div class="section-inner">
-      <div class="section-label">— Projeler</div>
-      <h2 class="section-title reveal-up">Çalışmalarım</h2>
-      <div class="projects-grid">
-        <div class="project-card reveal-up" style="--delay:0.05s" data-color="#e63946">
-          <div class="project-num">01</div>
-          <div class="project-content">
-            <div class="project-tags"><span>Python</span><span>CLI</span></div>
-            <h3>Terminal Görev Yöneticisi</h3>
-            <p>Komut satırında çalışan, renk kodlu, öncelik bazlı görev takip uygulaması.</p>
-            <div class="project-footer">
-              <a href="#" class="project-link">Kodu Gör →</a>
-            </div>
-          </div>
-          <div class="project-glow"></div>
-        </div>
-        <div class="project-card reveal-up" style="--delay:0.1s" data-color="#2a9d8f">
-          <div class="project-num">02</div>
-          <div class="project-content">
-            <div class="project-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
-            <h3>Hava Durumu Uygulaması</h3>
-            <p>API entegrasyonlu, animasyonlu hava durumu gösteren web uygulaması.</p>
-            <div class="project-footer">
-              <a href="#" class="project-link">Kodu Gör →</a>
-            </div>
-          </div>
-          <div class="project-glow"></div>
-        </div>
-        <div class="project-card reveal-up" style="--delay:0.15s" data-color="#f4a261">
-          <div class="project-num">03</div>
-          <div class="project-content">
-            <div class="project-tags"><span>Python</span><span>SQLite</span></div>
-            <h3>Kütüphane Sistemi</h3>
-            <p>Kitap ödünç verme ve takibini kolaylaştıran veritabanı destekli uygulama.</p>
-            <div class="project-footer">
-              <a href="#" class="project-link">Kodu Gör →</a>
-            </div>
-          </div>
-          <div class="project-glow"></div>
-        </div>
-        <div class="project-card reveal-up" style="--delay:0.2s" data-color="#6a4c93">
-          <div class="project-num">04</div>
-          <div class="project-content">
-            <div class="project-tags"><span>JavaScript</span><span>Canvas</span></div>
-            <h3>Mini Oyun Motoru</h3>
-            <p>HTML5 Canvas üzerinde çalışan basit 2D oyun fiziği ve çarpışma sistemi.</p>
-            <div class="project-footer">
-              <a href="#" class="project-link">Kodu Gör →</a>
-            </div>
-          </div>
-          <div class="project-glow"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT (Multi-step Form) -->
-  <section class="section contact-section" id="contact">
-    <div class="section-inner">
-      <div class="section-label">— İletişim</div>
-      <h2 class="section-title reveal-up">Konuşalım</h2>
-
-      <div class="form-wrapper reveal-up" style="--delay:0.2s">
-        <!-- STEPS INDICATOR -->
-        <div class="steps-bar">
-          <div class="step active" data-step="1"><span>1</span> Kim?</div>
-          <div class="step-line"></div>
-          <div class="step" data-step="2"><span>2</span> Ne?</div>
-          <div class="step-line"></div>
-          <div class="step" data-step="3"><span>3</span> Gönder</div>
-        </div>
-
-        <form id="contactForm" novalidate>
-          <!-- STEP 1 -->
-          <div class="form-step active" data-step="1">
-            <h3 class="form-step-title">Önce tanışalım 👋</h3>
-            <div class="field-group">
-              <label for="name">Adınız</label>
-              <input type="text" id="name" name="name" placeholder="Adınız Soyadınız" autocomplete="off"/>
-              <span class="field-error" id="nameErr">Lütfen adınızı girin.</span>
-            </div>
-            <div class="field-group">
-              <label for="email">E-posta</label>
-              <input type="email" id="email" name="email" placeholder="ornek@email.com" autocomplete="off"/>
-              <span class="field-error" id="emailErr">Geçerli bir e-posta girin.</span>
-            </div>
-            <button type="button" class="btn-next" onclick="nextStep(1)">Devam Et →</button>
-          </div>
-
-          <!-- STEP 2 -->
-          <div class="form-step" data-step="2">
-            <h3 class="form-step-title">Ne hakkında konuşalım? 💬</h3>
-            <div class="field-group">
-              <label>Konu seçin</label>
-              <div class="topic-pills">
-                <button type="button" class="pill" data-topic="İş Birliği">🤝 İş Birliği</button>
-                <button type="button" class="pill" data-topic="Proje">💡 Proje</button>
-                <button type="button" class="pill" data-topic="Soru">❓ Soru</button>
-                <button type="button" class="pill" data-topic="Diğer">✨ Diğer</button>
-              </div>
-              <input type="hidden" id="topic" name="topic"/>
-              <span class="field-error" id="topicErr">Lütfen bir konu seçin.</span>
-            </div>
-            <div class="field-group">
-              <label for="message">Mesajınız</label>
-              <textarea id="message" name="message" rows="4" placeholder="Merhaba Yunus, sana..."></textarea>
-              <span class="field-error" id="msgErr">Lütfen mesajınızı yazın.</span>
-            </div>
-            <div class="form-nav">
-              <button type="button" class="btn-back" onclick="prevStep(2)">← Geri</button>
-              <button type="button" class="btn-next" onclick="nextStep(2)">Devam Et →</button>
-            </div>
-          </div>
-
-          <!-- STEP 3 -->
-          <div class="form-step" data-step="3">
-            <h3 class="form-step-title">Her şey tamam mı? ✅</h3>
-            <div class="summary-box">
-              <div class="summary-row"><span>Ad</span><strong id="sumName">—</strong></div>
-              <div class="summary-row"><span>E-posta</span><strong id="sumEmail">—</strong></div>
-              <div class="summary-row"><span>Konu</span><strong id="sumTopic">—</strong></div>
-              <div class="summary-row"><span>Mesaj</span><strong id="sumMsg">—</strong></div>
-            </div>
-            <div class="form-nav">
-              <button type="button" class="btn-back" onclick="prevStep(3)">← Geri</button>
-              <button type="submit" class="btn-submit" id="submitBtn">
-                <span class="btn-text">Gönder 🚀</span>
-                <span class="btn-loader"></span>
-              </button>
-            </div>
-          </div>
-
-          <!-- SUCCESS -->
-          <div class="form-success" id="formSuccess">
-            <div class="success-icon">✦</div>
-            <h3>Mesajın ulaştı!</h3>
-            <p>En kısa sürede geri döneceğim. 🙏</p>
-            <button type="button" class="btn-ghost" onclick="resetForm()">Yeni Mesaj</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo">YB<span class="dot">.</span></div>
-      <p class="footer-copy">© 2025 Yunus Barış — Kod ile inşa edildi.</p>
-      <div class="footer-links">
-        <a href="https://github.com" target="_blank">GitHub</a>
-        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
