@@ -1,6 +1,6 @@
 /* =========================================
    YUNUS BARIŞ — PORTFOLYO
-   app.js (EN GÜNCEL - FORMSPREE POST UYUMLU)
+   app.js (KESİN ÇÖZÜM - GLOW + 6 SAYFA)
    ========================================= */
 
 // ── CUSTOM CURSOR ──────────────────────────
@@ -160,91 +160,27 @@ document.querySelectorAll('.pill').forEach(pill => {
   });
 });
 
-// ── MULTI-STEP FORM ────────────────────────
-let currentStep = 1;
-
-function goToStep(step) {
-  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.step').forEach((s, i) => {
-    s.classList.remove('active','done');
-    if (i + 1 < step) s.classList.add('done');
-    if (i + 1 === step) s.classList.add('active');
-  });
-  const target = document.querySelector(`.form-step[data-step="${step}"]`);
-  if (target) target.classList.add('active');
-  currentStep = step;
-}
-
-function validateStep(step) {
-  let valid = true;
-  if (step === 1) {
-    const name  = document.getElementById('name');
-    const email = document.getElementById('email');
-    if (!name || !email || !name.value.trim() || !email.value.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) valid = false;
-  }
-  if (step === 2) {
-    const topic = document.getElementById('topic');
-    const msg   = document.getElementById('message');
-    if (!topic || !msg || !topic.value || !msg.value.trim()) valid = false;
-  }
-  return valid;
-}
-
-window.nextStep = function(from) {
-  if (!validateStep(from)) {
-    alert("Lütfen alanları doğru doldurun.");
-    return;
-  }
-  if (from === 2) fillSummary();
-  goToStep(from + 1);
-};
-
-window.prevStep = function(from) {
-  goToStep(from - 1);
-};
-
-function fillSummary() {
-  const nameVal  = document.getElementById('name')?.value || "";
-  const emailVal = document.getElementById('email')?.value || "";
-  const topicVal = document.getElementById('topic')?.value || "";
-  const msgVal   = document.getElementById('message')?.value || "";
-
-  if(document.getElementById('sumName')) document.getElementById('sumName').textContent = nameVal;
-  if(document.getElementById('sumEmail')) document.getElementById('sumEmail').textContent = emailVal;
-  if(document.getElementById('sumTopic')) document.getElementById('sumTopic').textContent = topicVal;
-  if(document.getElementById('sumMsg')) document.getElementById('sumMsg').textContent = msgVal.length > 60 ? msgVal.slice(0, 60) + '…' : msgVal;
-}
-
-// ── FORMSPREE GÖNDERİMİ (POST GÜNCELLEMESİ) ──
+// ── MULTI-STEP FORM (FORMSPREE) ───────────
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
   contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
     const data = new FormData(contactForm);
-
-    if (btn) {
-      btn.innerText = "Gönderiliyor...";
-      btn.disabled = true;
-    }
-
+    if (btn) { btn.innerText = "Gönderiliyor..."; btn.disabled = true; }
     try {
       const response = await fetch(contactForm.action, {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
       });
-
       if (response.ok) {
         contactForm.reset();
         document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-        const successEl = document.getElementById('formSuccess');
-        if (successEl) successEl.classList.add('visible');
-        const stepsBar = document.querySelector('.steps-bar');
-        if (stepsBar) stepsBar.style.display = 'none';
+        if (document.getElementById('formSuccess')) document.getElementById('formSuccess').classList.add('visible');
+        if (document.querySelector('.steps-bar')) document.querySelector('.steps-bar').style.display = 'none';
       } else {
-        const errorData = await response.json();
-        alert("Hata: " + (errorData.errors ? errorData.errors[0].message : "Mesaj gönderilemedi."));
+        alert("Bir hata oluştu, lütfen tekrar deneyin.");
         if (btn) { btn.innerText = "Gönder"; btn.disabled = false; }
       }
     } catch (error) {
@@ -254,25 +190,70 @@ if (contactForm) {
   });
 }
 
-window.resetForm = function() {
-  location.reload();
+window.nextStep = function(from) {
+  const name = document.getElementById('name');
+  const email = document.getElementById('email');
+  const topic = document.getElementById('topic');
+  const msg = document.getElementById('message');
+  
+  if (from === 1 && (!name.value.trim() || !email.value.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/))) {
+    alert("Lütfen adınızı ve geçerli bir e-posta girin."); return;
+  }
+  if (from === 2 && (!topic.value || !msg.value.trim())) {
+    alert("Lütfen bir konu seçin ve mesajınızı yazın."); return;
+  }
+  
+  if (from === 2) {
+    document.getElementById('sumName').textContent = name.value;
+    document.getElementById('sumEmail').textContent = email.value;
+    document.getElementById('sumTopic').textContent = topic.value;
+    document.getElementById('sumMsg').textContent = msg.value.length > 60 ? msg.value.slice(0, 60) + '…' : msg.value;
+  }
+  
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.step').forEach((s, i) => {
+    s.classList.remove('active','done');
+    if (i + 1 < from + 1) s.classList.add('done');
+    if (i + 1 === from + 1) s.classList.add('active');
+  });
+  document.querySelector(`.form-step[data-step="${from + 1}"]`).classList.add('active');
 };
 
-// ── SMOOTH ANCHOR SCROLL (6 SAYFA DESTEĞİ) ──
+window.prevStep = function(from) {
+  document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.step').forEach((s, i) => {
+    s.classList.remove('active','done');
+    if (i + 1 < from - 1) s.classList.add('done');
+    if (i + 1 === from - 1) s.classList.add('active');
+  });
+  document.querySelector(`.form-step[data-step="${from - 1}"]`).classList.add('active');
+};
+
+window.resetForm = function() { location.reload(); };
+
+// ── PROJECT CARD GLOW (PARLAMA EFEKTİ) ─────
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width)  * 100;
+    const y = ((e.clientY - rect.top)  / rect.height) * 100;
+    const glow = card.querySelector('.project-glow');
+    if (glow) {
+      glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(230, 57, 70, 0.15), transparent 60%)`;
+    }
+  });
+});
+
+// ── SMOOTH ANCHOR SCROLL (6 SAYFA) ──────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const targetId = a.getAttribute('href');
-    const target = document.querySelector(targetId);
+    const target = document.querySelector(a.getAttribute('href'));
     if (target) {
       e.preventDefault();
-      const offset = 80; // Header yüksekliği
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = target.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
+      const offset = 80;
+      const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({
-        top: offsetPosition,
+        top: elementPosition - offset,
         behavior: 'smooth'
       });
     }
