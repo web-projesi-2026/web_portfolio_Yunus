@@ -1,7 +1,6 @@
-
 /* =========================================
    YUNUS BARIŞ — PORTFOLYO
-   app.js
+   app.js (GÜNCELLENMİŞ - FORMSPREE DESTEKLİ)
    ========================================= */
 
 // ── CUSTOM CURSOR ──────────────────────────
@@ -84,10 +83,8 @@ class Particle {
   }
 }
 
-// Init 120 particles
 for (let i = 0; i < 120; i++) particles.push(new Particle());
 
-// Draw connections
 function drawConnections() {
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
@@ -117,43 +114,22 @@ function animateParticles() {
 }
 animateParticles();
 
-// ── INTERSECTION OBSERVER (Scroll Reveal) ──
+// ── INTERSECTION OBSERVER ──────────────────
 const reveals = document.querySelectorAll('.reveal-up');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      // Trigger skill bars if inside skills
-      const fill = entry.target.querySelector('.skill-fill');
-      if (fill) animateSkillBar(fill);
-      // Trigger counters
       entry.target.querySelectorAll('.stat-num').forEach(n => animateCounter(n));
     }
   });
 }, { threshold: 0.12 });
 reveals.forEach(el => observer.observe(el));
 
-// Animate skill bars on reveal
-document.querySelectorAll('.skill-card').forEach(card => {
-  const cardObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const fill = entry.target.querySelector('.skill-fill');
-        if (fill) animateSkillBar(fill);
-        cardObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  cardObserver.observe(card);
-});
-
-function animateSkillBar(fill) {
-  const target = fill.dataset.width;
-  setTimeout(() => { fill.style.width = target + '%'; }, 100);
-}
-
 // ── COUNTER ANIMATION ──────────────────────
 function animateCounter(el) {
+  if (el.classList.contains('counted')) return;
+  el.classList.add('counted');
   const target = +el.dataset.target;
   let current  = 0;
   const step   = target / 40;
@@ -164,18 +140,6 @@ function animateCounter(el) {
   }, 40);
 }
 
-// Observe stats section
-const statsObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.querySelectorAll('.stat-num').forEach(n => animateCounter(n));
-      statsObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.5 });
-const statsEl = document.querySelector('.about-stats');
-if (statsEl) statsObserver.observe(statsEl);
-
 // ── TOPIC PILLS ────────────────────────────
 document.querySelectorAll('.pill').forEach(pill => {
   pill.addEventListener('click', () => {
@@ -183,17 +147,13 @@ document.querySelectorAll('.pill').forEach(pill => {
     pill.classList.add('selected');
     const topicInput = document.getElementById('topic');
     if(topicInput) topicInput.value = pill.dataset.topic;
-    // Remove error class if exists
-    pill.closest('.field-group')?.classList.remove('has-error');
   });
 });
 
-// ── MULTI-STEP FORM ────────────────────────
+// ── MULTI-STEP FORM (FORMSPREE ENTEGRASYONU) ──
 let currentStep = 1;
-const totalSteps = 3;
 
 function goToStep(step) {
-  // Hide all steps
   document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.step').forEach((s, i) => {
     s.classList.remove('active','done');
@@ -210,28 +170,21 @@ function validateStep(step) {
   if (step === 1) {
     const name  = document.getElementById('name');
     const email = document.getElementById('email');
-    const nameG  = name.closest('.field-group');
-    const emailG = email.closest('.field-group');
-    nameG.classList.remove('has-error');
-    emailG.classList.remove('has-error');
-    if (!name.value.trim()) { nameG.classList.add('has-error'); valid = false; }
-    if (!email.value.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) { emailG.classList.add('has-error'); valid = false; }
+    if (!name.value.trim() || !email.value.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/)) valid = false;
   }
   if (step === 2) {
-const topic   = document.getElementById('topic');
-    const msg     = document.getElementById('message');
-    const topicG  = topic ? topic.closest('.field-group') : null;
-    const msgG    = msg ? msg.closest('.field-group') : null;
-    if(topicG) topicG.classList.remove('has-error');
-    if(msgG) msgG.classList.remove('has-error');
-    if (topic && !topic.value) { if(topicG) topicG.classList.add('has-error'); valid = false; }
-    if (msg && !msg.value.trim()) { if(msgG) msgG.classList.add('has-error'); valid = false; }
+    const topic = document.getElementById('topic');
+    const msg   = document.getElementById('message');
+    if (!topic.value || !msg.value.trim()) valid = false;
   }
   return valid;
 }
 
 window.nextStep = function(from) {
-  if (!validateStep(from)) return;
+  if (!validateStep(from)) {
+    alert("Lütfen tüm alanları doğru doldurun.");
+    return;
+  }
   if (from === 2) fillSummary();
   goToStep(from + 1);
 };
@@ -247,33 +200,45 @@ function fillSummary() {
   document.getElementById('sumMsg').textContent   = msg.length > 60 ? msg.slice(0, 60) + '…' : msg;
 }
 
-// Form submit
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+// FORMSPREE GÖNDERİMİ
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
-  btn.classList.add('loading');
+  const form = e.target;
+  const data = new FormData(form);
+
+  btn.innerText = "Gönderiliyor...";
   btn.disabled = true;
 
-  // Simulate send
-  setTimeout(() => {
-    btn.classList.remove('loading');
-    this.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
-    document.getElementById('formSuccess').classList.add('visible');
-    document.querySelector('.steps-bar').style.display = 'none';
-  }, 1800);
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      form.reset();
+      this.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('formSuccess').classList.add('visible');
+      document.querySelector('.steps-bar').style.display = 'none';
+    } else {
+      alert("Bir hata oluştu, lütfen tekrar deneyin.");
+      btn.innerText = "Gönder";
+      btn.disabled = false;
+    }
+  } catch (error) {
+    alert("Bağlantı hatası oluştu.");
+    btn.innerText = "Gönder";
+    btn.disabled = false;
+  }
 });
 
 window.resetForm = function() {
-  document.getElementById('contactForm').reset();
-  document.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
-  document.getElementById('formSuccess').classList.remove('visible');
-  document.querySelector('.steps-bar').style.display = 'flex';
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = false;
-  goToStep(1);
+  location.reload(); // Formu ve sayfayı en temiz haliyle sıfırlar
 };
 
-// ── PROJECT CARD GLOW ON MOUSE ────────────
+// ── PROJECT CARD GLOW ─────────────────────
 document.querySelectorAll('.project-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
@@ -294,11 +259,3 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
-
-// ── PAGE LOAD REVEAL ──────────────────────
-window.addEventListener('load', () => {
-  document.querySelectorAll('.hero .reveal-up').forEach(el => {
-    el.classList.add('visible');
-  });
-});
-
