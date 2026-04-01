@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
+  
+  <!-- FONT AWESOME İKONLARI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -62,8 +65,8 @@
     </h1>
 
     <p class="hero-sub">
-      Kod yazıyorum, dünya kuruyorum.<br/>
-      Hayal et, tasarla ve kodla
+      Geleceğin teknolojilerini bugünün temiz koduyla inşa ediyorum.<br/>
+      Karmaşık problemleri basit ve etkili çözümlere indirgemek.
     </p>
 
     <div class="hero-cta">
@@ -83,63 +86,57 @@
     
     <div class="about-stats">
       <div class="stat">
-        <span class="stat-num" data-target="20">0</span>
+        <span class="stat-num" data-target="12">0</span>
         <span class="stat-label">Tamamlanan Proje</span>
       </div>
       <div class="stat">
-        <span class="stat-num" data-target="500">0</span>
+        <span class="stat-num" data-target="450">0</span>
         <span class="stat-label">Kahve Tüketimi</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BECERİLER BÖLÜMÜ (Hover Efektli) -->
+<!-- BECERİLER BÖLÜMÜ (İkonlu ve Hover Efektli) -->
 <section class="section skills-section" id="skills">
   <div class="section-inner reveal-up">
     <h2 class="section-title">Beceriler</h2>
-    <div class="skills-container" style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px;">
+    <div class="skills-container" style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; justify-content: center;">
       
-      <span class="skill-tag" 
-            style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'JetBrains Mono', monospace;"
+      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
             onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
             onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        HTML5
+        <i class="fab fa-html5" style="color: #e34f26;"></i> HTML5
       </span>
 
-      <span class="skill-tag" 
-            style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'JetBrains Mono', monospace;"
+      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
             onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
             onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        CSS3 / Tailwind
+        <i class="fab fa-css3-alt" style="color: #1572b6;"></i> CSS3 / Tailwind
       </span>
 
-      <span class="skill-tag" 
-            style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'JetBrains Mono', monospace;"
+      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
             onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
             onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        JavaScript
+        <i class="fab fa-js" style="color: #f7df1e;"></i> JavaScript
       </span>
 
-      <span class="skill-tag" 
-            style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'JetBrains Mono', monospace;"
+      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
             onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
             onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        PHP / MySQL
+        <i class="fab fa-php" style="color: #777bb4;"></i> PHP / MySQL
       </span>
 
-      <span class="skill-tag" 
-            style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'JetBrains Mono', monospace;"
+      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
             onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
             onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        C# / .NET
+        <i class="fas fa-code" style="color: #512bd4;"></i> C# / .NET
       </span>
 
-      <span class="skill-tag" 
-            style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-block; font-family: 'JetBrains Mono', monospace;"
+      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
             onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
             onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        Git / GitHub
+        <i class="fab fa-github" style="color: #ffffff;"></i> Git / GitHub
       </span>
 
     </div>
@@ -152,11 +149,8 @@
     <h2 class="section-title">Deneyim</h2>
     <div class="experience-list">
       <div class="experience-item">
-        <h3>AEÜ TBMYO Stajyer</h3>
-        <p>1.Sınıf teknik ekip üyesi</p>
-        <p>AEÜ TBMYO 1. sınıf yazı teknik stajyer</p>
-        <h4>Stajyer Geliştirici</h4>
-        <p>Bilgi İşlem Daire Başkanlığı | 2025 - Günümüz</p>
+        <h3>Stajyer Geliştirici</h3>
+        <p>Şirket Adı | 2023 - Günümüz</p>
         <p>Web projeleri üzerinde çalışma ve teknik destek sağlama.</p>
       </div>
     </div>
@@ -170,28 +164,32 @@
     <div class="education-list">
       <div class="education-item">
         <h3>Bilgisayar Programcılığı</h3>
-        <p>Ahi Evran Üniversitesi | 2024 - 2026</p>
-        <p>Donanım,A lgoritmalar, Veri Yapıları ve Web Teknolojileri odaklı eğitim.</p>
+        <p>Üniversite Adı | 2022 - 2024</p>
+        <p>Algoritmalar, Veri Yapıları ve Web Teknolojileri odaklı eğitim.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS (Parlama Efektli) -->
+<!-- PROJECTS (Parlama Efektli ve Tıklanabilir) -->
 <section class="section projects-section" id="projects">
   <div class="section-inner">
     <h2 class="section-title">Projelerim</h2>
     <div class="projects-grid">
-      <div class="project-card reveal-up">
-        <div class="project-glow"></div> <!-- KIRMIZI PARLAMA İÇİN ŞART -->
-        <h3>Araba Parçaları E-Ticaret Sitesi</h3>
+      <!-- Proje Kartı: Tıklandığında belirtilen linke gider -->
+      <div class="project-card reveal-up" onclick="window.open('https://barisyunus29-blip.github.io/web_portfolyo_-ablonu_yunus/', '_blank')" style="cursor: pointer;">
+        <div class="project-glow"></div> <!-- Kırmızı parlama efekti için şart -->
+        <h3>E-Ticaret Sitesi</h3>
         <p>Modern bir alışveriş deneyimi.</p>
+        <div class="project-link" style="margin-top: 15px; font-size: 0.8rem; color: #e63946;">
+          Projeyi Görüntüle <i class="fas fa-external-link-alt"></i>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT (Formspree Entegreli) -->
+<!-- CONTACT -->
 <section class="section contact-section" id="contact">
   <div class="section-inner reveal-up">
     <h2 class="section-title">İletişim</h2>
@@ -203,7 +201,6 @@
     </div>
 
     <form id="contactForm" action="https://formspree.io/f/xjgpgldz" method="POST">
-      <!-- ADIM 1 -->
       <div class="form-step active" data-step="1">
         <div class="field-group">
           <input type="text" name="name" id="name" placeholder="Adınız" required>
@@ -214,7 +211,6 @@
         <button type="button" onclick="nextStep(1)" class="btn-primary">Sonraki</button>
       </div>
 
-      <!-- ADIM 2 -->
       <div class="form-step" data-step="2">
         <div class="field-group">
           <input type="hidden" name="topic" id="topic">
@@ -233,7 +229,6 @@
         </div>
       </div>
 
-      <!-- ADIM 3 (Özet) -->
       <div class="form-step" data-step="3">
         <div class="summary">
           <p><strong>Ad:</strong> <span id="sumName"></span></p>
