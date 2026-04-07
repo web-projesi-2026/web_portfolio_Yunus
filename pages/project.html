@@ -26,6 +26,7 @@
                 <li><a href="experience.html">Deneyim</a></li>
                 <li><a href="education.html">Eğitim</a></li>
                 <li><a href="project.html" class="active">Projeler</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
                 <li><a href="contact.html">İletişim</a></li>
             </ul>
             <div class="nav-socials">
@@ -52,7 +53,7 @@
             <div class="projects-grid fade-in-up delay-1">
                 
                 <!-- Proje 1 -->
-                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card">
+                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card glow-card">
                     <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
                     <h3>E-Ticaret Sitesi</h3>
                     <p>PHP ve MySQL kullanılarak geliştirilmiş, dinamik sepet sistemi ve yönetici paneli bulunan kapsamlı bir e-ticaret platformu.</p>
@@ -63,7 +64,7 @@
                 </a>
 
                 <!-- Proje 2 -->
-                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card">
+                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card glow-card">
                     <div class="project-icon"><i class="fas fa-desktop"></i></div>
                     <h3>Stok Takip Sistemi</h3>
                     <p>C# ve SQL Server tabanlı, işletmelerin ürün stoklarını, satışlarını ve raporlarını yönetebileceği masaüstü uygulaması.</p>
@@ -74,7 +75,7 @@
                 </a>
 
                 <!-- Proje 3 -->
-                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card">
+                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card glow-card">
                     <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
                     <h3>Hava Durumu Uygulaması</h3>
                     <p>OpenWeather API kullanarak anlık hava durumu verilerini modern bir arayüzle sunan JavaScript tabanlı web uygulaması.</p>
@@ -85,7 +86,7 @@
                 </a>
 
                 <!-- Proje 4 -->
-                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card">
+                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card glow-card">
                     <div class="project-icon"><i class="fas fa-tasks"></i></div>
                     <h3>Görev Yönetim Aracı</h3>
                     <p>Kullanıcıların günlük işlerini planlayabileceği, sürükle-bırak özellikli ve yerel depolama destekli modern bir ajanda.</p>
@@ -105,17 +106,5 @@
     </footer>
 
     <script src="../assets/js/app.js"></script>
-    <script>
-        // Kart parlama efekti için fare takibi
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-    </script>
 </body>
 </html>
