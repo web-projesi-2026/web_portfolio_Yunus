@@ -15,7 +15,7 @@ if (cursor && trail) {
     });
 
     // Tıklanabilir öğelerde imleç büyümesi
-    const links = document.querySelectorAll('a, button, .skill-item, .project-card');
+    const links = document.querySelectorAll('a, button, .skill-card, .project-card, .tool-badge, .interest-card');
     links.forEach(link => {
         link.addEventListener('mouseenter', () => {
             cursor.style.transform = 'scale(2.5)';
@@ -93,6 +93,10 @@ const handleAiResponse = (userInput) => {
         response = "Yunus; HTML, CSS, JavaScript, PHP ve C# konularında uzmandır. Beceriler sayfasından tüm detaylara bakabilirsiniz.";
     } else if (input.includes("iletişim") || input.includes("ulaş")) {
         response = "Yunus'a İletişim sayfasındaki formdan veya LinkedIn üzerinden ulaşabilirsiniz.";
+    } else if (input.includes("hakkında") || input.includes("kim")) {
+        response = "Yunus Barış, Kırşehir Ahi Evran Üniversitesi Bilgisayar Programcılığı öğrencisidir. Kod yazmayı bir sanat olarak görür!";
+    } else if (input.includes("eğitim") || input.includes("okul") || input.includes("üniversite")) {
+        response = "Yunus, Kırşehir Ahi Evran Üniversitesi'nde Bilgisayar Programcılığı okumaktadır.";
     }
 
     setTimeout(() => addMessage(response, 'ai'), 600);
