@@ -52,7 +52,7 @@
             <div class="skills-category fade-in-up delay-1">
                 <div class="skills-section-title">Frontend Geliştirme</div>
                 <div class="skills-grid">
-                    <div class="skill-card">
+                    <div class="skill-card glow-card">
                         <div class="skill-card-header">
                             <div class="skill-icon"><i class="fab fa-html5"></i></div>
                             <div class="skill-card-info">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-card">
+                    <div class="skill-card glow-card">
                         <div class="skill-card-header">
                             <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
                             <div class="skill-card-info">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-card">
+                    <div class="skill-card glow-card">
                         <div class="skill-card-header">
                             <div class="skill-icon"><i class="fab fa-js"></i></div>
                             <div class="skill-card-info">
@@ -115,7 +115,7 @@
             <div class="skills-category fade-in-up delay-2">
                 <div class="skills-section-title">Backend Geliştirme</div>
                 <div class="skills-grid">
-                    <div class="skill-card">
+                    <div class="skill-card glow-card">
                         <div class="skill-card-header">
                             <div class="skill-icon"><i class="fab fa-php"></i></div>
                             <div class="skill-card-info">
@@ -134,7 +134,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-card">
+                    <div class="skill-card glow-card">
                         <div class="skill-card-header">
                             <div class="skill-icon"><i class="fas fa-code"></i></div>
                             <div class="skill-card-info">
@@ -153,7 +153,7 @@
                         </div>
                     </div>
 
-                    <div class="skill-card">
+                    <div class="skill-card glow-card">
                         <div class="skill-card-header">
                             <div class="skill-icon"><i class="fas fa-database"></i></div>
                             <div class="skill-card-info">
@@ -178,35 +178,35 @@
             <div class="skills-category fade-in-up delay-3">
                 <div class="skills-section-title">Araçlar &amp; Teknolojiler</div>
                 <div class="tools-grid">
-                    <div class="tool-badge">
+                    <div class="tool-badge glow-card">
                         <i class="fab fa-git-alt"></i>
                         <span>Git</span>
                     </div>
-                    <div class="tool-badge">
+                    <div class="tool-badge glow-card">
                         <i class="fab fa-github"></i>
                         <span>GitHub</span>
                     </div>
-                    <div class="tool-badge">
+                    <div class="tool-badge glow-card">
                         <i class="fas fa-terminal"></i>
                         <span>VS Code</span>
                     </div>
-                    <div class="tool-badge">
+                    <div class="tool-badge glow-card">
                         <i class="fab fa-figma"></i>
                         <span>Figma</span>
                     </div>
-                    <div class="tool-badge">
+                    <div class="tool-badge glow-card">
                         <i class="fas fa-server"></i>
                         <span>XAMPP</span>
                     </div>
-                    <div class="tool-badge">
+                    <div class="tool-badge glow-card">
                         <i class="fab fa-bootstrap"></i>
                         <span>Bootstrap</span>
                     </div>
-                    <div class="tool-badge">
+                    <div class="tool-badge glow-card">
                         <i class="fab fa-npm"></i>
                         <span>NPM</span>
                     </div>
-                    <div class="tool-badge">
+                    <div class="tool-badge glow-card">
                         <i class="fas fa-wind" style="font-size:1.3rem;"></i>
                         <span>Tailwind</span>
                     </div>
@@ -222,6 +222,16 @@
 
     <script src="../assets/js/app.js"></script>
     <script>
+        document.querySelectorAll('.glow-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
         // Skill bar animasyonu - IntersectionObserver ile
         const skillBars = document.querySelectorAll('.skill-bar-fill');
         const observer = new IntersectionObserver((entries) => {
