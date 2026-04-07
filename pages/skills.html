@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beceriler | Yunus Barış</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ÖZEL İMLEÇ -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="nav-logo">YB<span class="dot">.</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Ana Sayfa</a></li>
+                <li><a href="about.html">Hakkımda</a></li>
+                <li><a href="skills.html" class="active">Beceriler</a></li>
+                <li><a href="experience.html">Deneyim</a></li>
+                <li><a href="education.html">Eğitim</a></li>
+                <li><a href="project.html">Projeler</a></li>
+                <li><a href="contact.html">İletişim</a></li>
+            </ul>
+            <div class="nav-socials">
+                <a href="https://github.com/barisyunus29-blip" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="page-container">
+
+            <!-- SAYFA BAŞLIĞI -->
+            <div class="page-header fade-in-up">
+                <span class="page-header-label">Teknoloji Yığını</span>
+                <h1>Beceri<span class="highlight">lerim</span></h1>
+                <div class="page-header-line"></div>
+            </div>
+
+            <!-- FRONTEND BECERİLERİ -->
+            <div class="skills-category fade-in-up delay-1">
+                <div class="skills-section-title">Frontend Geliştirme</div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                            <div class="skill-card-info">
+                                <h3>HTML5</h3>
+                                <span>Markup</span>
+                            </div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-label">
+                                <span>Yetkinlik</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-width="90"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                            <div class="skill-card-info">
+                                <h3>CSS3</h3>
+                                <span>Styling</span>
+                            </div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-label">
+                                <span>Yetkinlik</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-width="85"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon"><i class="fab fa-js"></i></div>
+                            <div class="skill-card-info">
+                                <h3>JavaScript</h3>
+                                <span>Scripting</span>
+                            </div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-label">
+                                <span>Yetkinlik</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-width="75"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BACKEND BECERİLERİ -->
+            <div class="skills-category fade-in-up delay-2">
+                <div class="skills-section-title">Backend Geliştirme</div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon"><i class="fab fa-php"></i></div>
+                            <div class="skill-card-info">
+                                <h3>PHP</h3>
+                                <span>Server-side</span>
+                            </div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-label">
+                                <span>Yetkinlik</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-width="70"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon"><i class="fas fa-code"></i></div>
+                            <div class="skill-card-info">
+                                <h3>C#</h3>
+                                <span>OOP / .NET</span>
+                            </div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-label">
+                                <span>Yetkinlik</span>
+                                <span class="skill-percent">65%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-width="65"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-card-header">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <div class="skill-card-info">
+                                <h3>MySQL</h3>
+                                <span>Veritabanı</span>
+                            </div>
+                        </div>
+                        <div class="skill-bar-wrapper">
+                            <div class="skill-bar-label">
+                                <span>Yetkinlik</span>
+                                <span class="skill-percent">72%</span>
+                            </div>
+                            <div class="skill-bar-track">
+                                <div class="skill-bar-fill" data-width="72"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARAÇLAR -->
+            <div class="skills-category fade-in-up delay-3">
+                <div class="skills-section-title">Araçlar &amp; Teknolojiler</div>
+                <div class="tools-grid">
+                    <div class="tool-badge">
+                        <i class="fab fa-git-alt"></i>
+                        <span>Git</span>
+                    </div>
+                    <div class="tool-badge">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </div>
+                    <div class="tool-badge">
+                        <i class="fas fa-terminal"></i>
+                        <span>VS Code</span>
+                    </div>
+                    <div class="tool-badge">
+                        <i class="fab fa-figma"></i>
+                        <span>Figma</span>
+                    </div>
+                    <div class="tool-badge">
+                        <i class="fas fa-server"></i>
+                        <span>XAMPP</span>
+                    </div>
+                    <div class="tool-badge">
+                        <i class="fab fa-bootstrap"></i>
+                        <span>Bootstrap</span>
+                    </div>
+                    <div class="tool-badge">
+                        <i class="fab fa-npm"></i>
+                        <span>NPM</span>
+                    </div>
+                    <div class="tool-badge">
+                        <i class="fas fa-wind" style="font-size:1.3rem;"></i>
+                        <span>Tailwind</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Yunus Barış. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script>
+        // Skill bar animasyonu - IntersectionObserver ile
+        const skillBars = document.querySelectorAll('.skill-bar-fill');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const targetWidth = bar.getAttribute('data-width');
+                    setTimeout(() => {
+                        bar.style.width = targetWidth + '%';
+                    }, 200);
+                    observer.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        skillBars.forEach(bar => observer.observe(bar));
+    </script>
+</body>
+</html>
