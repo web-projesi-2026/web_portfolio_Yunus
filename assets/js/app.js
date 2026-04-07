@@ -1,13 +1,45 @@
-// Hamburger Menü Kontrolü
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+// ÖZEL İMLEÇ KONTROLÜ
+const cursor = document.getElementById('cursor');
+const trail = document.getElementById('cursorTrail');
+
+if (cursor && trail) {
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        // Takip eden iz için hafif gecikme
+        setTimeout(() => {
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+        }, 50);
+    });
+
+    // Tıklanabilir öğelerde imleç büyümesi
+    const links = document.querySelectorAll('a, button, .skill-item, .project-card');
+    links.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(2.5)';
+            cursor.style.backgroundColor = 'rgba(230, 57, 70, 0.5)';
+            trail.style.transform = 'scale(0.5)';
+        });
+        link.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            cursor.style.backgroundColor = '#e63946';
+            trail.style.transform = 'scale(1)';
+        });
+    });
+}
+
+// HAMBURGER MENÜ KONTROLÜ
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
 
 if (hamburger) {
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         hamburger.classList.toggle('active');
         
-        // Hamburger animasyonu
+        // Hamburger animasyonu (CSS ile desteklenecek)
         const spans = hamburger.querySelectorAll('span');
         if (hamburger.classList.contains('active')) {
             spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -21,7 +53,7 @@ if (hamburger) {
     });
 }
 
-// AI Chatbot Kontrolü
+// AI CHATBOT KONTROLÜ
 const chatToggle = document.getElementById('ai-chat-toggle');
 const chatContainer = document.getElementById('ai-chat-container');
 const closeChat = document.getElementById('close-chat');
@@ -51,21 +83,19 @@ const addMessage = (text, sender) => {
 
 const handleAiResponse = (userInput) => {
     const input = userInput.toLowerCase();
-    let response = "Anlayamadım, lütfen tekrar eder misiniz?";
+    let response = "Bunu tam olarak anlayamadım ama Yunus'un yetenekleri ve projeleri hakkında size bilgi verebilirim!";
 
     if (input.includes("merhaba") || input.includes("selam")) {
-        response = "Merhaba! Size nasıl yardımcı olabilirim?";
-    } else if (input.includes("proje") || input.includes("neler yaptın")) {
-        response = "Yunus'un yaptığı projeleri 'Projeler' sayfasında görebilirsiniz. Özellikle E-Ticaret projesi oldukça kapsamlıdır.";
-    } else if (input.includes("kim") || input.includes("yunus kim")) {
-        response = "Yunus Barış, Kırşehir Ahi Evran Üniversitesi'nde Bilgisayar Programcılığı okuyan tutkulu bir geliştiricidir.";
+        response = "Merhaba! Ben Yunus'un dijital asistanıyım. Portfolyo hakkında neyi merak ediyorsunuz?";
+    } else if (input.includes("proje")) {
+        response = "Yunus'un 'E-Ticaret Sitesi' projesi oldukça kapsamlıdır. Detayları Projeler sayfasında bulabilirsiniz.";
+    } else if (input.includes("beceri") || input.includes("yetenek")) {
+        response = "Yunus; HTML, CSS, JavaScript, PHP ve C# konularında uzmandır. Beceriler sayfasından tüm detaylara bakabilirsiniz.";
     } else if (input.includes("iletişim") || input.includes("ulaş")) {
-        response = "Yunus'a iletişim sayfasındaki formdan veya LinkedIn üzerinden ulaşabilirsiniz.";
-    } else if (input.includes("beceri") || input.includes("ne biliyor")) {
-        response = "Yunus; HTML, CSS, JS, PHP ve C# gibi dillerde yetkindir.";
+        response = "Yunus'a İletişim sayfasındaki formdan veya LinkedIn üzerinden ulaşabilirsiniz.";
     }
 
-    setTimeout(() => addMessage(response, 'ai'), 500);
+    setTimeout(() => addMessage(response, 'ai'), 600);
 };
 
 if (sendAi) {
@@ -77,21 +107,5 @@ if (sendAi) {
             handleAiResponse(text);
         }
     });
-
-    aiInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendAi.click();
-    });
+    aiInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendAi.click(); });
 }
-
-// Proje Kartı Parlama Efekti
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        const glow = card.querySelector('.project-glow');
-        if (glow) {
-            glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(230, 57, 70, 0.15), transparent 60%)`;
-        }
-    });
-});
