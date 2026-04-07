@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim | Yunus Barış</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">YB<span>.</span></div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Ana Sayfa</a></li>
+                <li><a href="about.html">Hakkımda</a></li>
+                <li><a href="project.html">Projeler</a></li>
+                <li><a href="contact.html" class="active">İletişim</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contact-page">
+            <div class="container">
+                <h2>İletişim</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Bana Ulaşın</h3>
+                        <p><i class="fas fa-envelope"></i> baris.yunus@ogr.ahievran.edu.tr</p>
+                        <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank">LinkedIn</a></p>
+                        <p><i class="fab fa-github"></i> <a href="https://github.com/barisyunus29-blip" target="_blank">GitHub</a></p>
+                    </div>
+                    <form id="contactForm" action="https://formspree.io/f/xjgpgldz" method="POST">
+                        <div class="field-group">
+                            <input type="text" name="name" id="name" placeholder="Adınız" required>
+                        </div>
+                        <div class="field-group">
+                            <input type="email" name="email" id="email" placeholder="Email" required>
+                        </div>
+                        <div class="field-group">
+                            <textarea name="message" id="message" placeholder="Mesajınız" required></textarea>
+                        </div>
+                        <button type="submit" id="submitBtn" class="btn">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Yunus Barış. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>
 
