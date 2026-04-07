@@ -6,51 +6,106 @@
     <title>İletişim | Yunus Barış</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <!-- ÖZEL İMLEÇ -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+
     <header>
         <nav class="navbar">
-            <div class="logo">YB<span>.</span></div>
-            <ul class="nav-links">
+            <a href="../index.html" class="nav-logo">YB<span class="dot">.</span></a>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Ana Sayfa</a></li>
                 <li><a href="about.html">Hakkımda</a></li>
+                <li><a href="skills.html">Beceriler</a></li>
+                <li><a href="experience.html">Deneyim</a></li>
+                <li><a href="education.html">Eğitim</a></li>
                 <li><a href="project.html">Projeler</a></li>
                 <li><a href="contact.html" class="active">İletişim</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-socials">
+                <a href="https://github.com/barisyunus29-blip" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
             </div>
         </nav>
     </header>
 
-    <main>
-        <section class="contact-page">
-            <div class="container">
-                <h2>İletişim</h2>
-                <div class="contact-grid">
-                    <div class="contact-info">
-                        <h3>Bana Ulaşın</h3>
-                        <p><i class="fas fa-envelope"></i> baris.yunus@ogr.ahievran.edu.tr</p>
-                        <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank">LinkedIn</a></p>
-                        <p><i class="fab fa-github"></i> <a href="https://github.com/barisyunus29-blip" target="_blank">GitHub</a></p>
+    <main class="page-wrapper">
+        <div class="page-container">
+
+            <!-- SAYFA BAŞLIĞI -->
+            <div class="page-header fade-in-up">
+                <span class="page-header-label">Bana Ulaşın</span>
+                <h1>İleti<span class="highlight">şim</span></h1>
+                <div class="page-header-line"></div>
+            </div>
+
+            <div class="contact-wrapper fade-in-up delay-1">
+                
+                <!-- Sol: İletişim Bilgileri -->
+                <div class="contact-info-box">
+                    <a href="mailto:barisyunus29@gmail.com" class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-method-text">
+                            <h4>E-Posta</h4>
+                            <p>barisyunus29@gmail.com</p>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank" class="contact-method">
+                        <i class="fab fa-linkedin-in"></i>
+                        <div class="contact-method-text">
+                            <h4>LinkedIn</h4>
+                            <p>Yunus Barış</p>
+                        </div>
+                    </a>
+                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="contact-method">
+                        <i class="fab fa-github"></i>
+                        <div class="contact-method-text">
+                            <h4>GitHub</h4>
+                            <p>@barisyunus29-blip</p>
+                        </div>
+                    </a>
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-method-text">
+                            <h4>Konum</h4>
+                            <p>Kırşehir, Türkiye</p>
+                        </div>
                     </div>
-                    <form id="contactForm" action="https://formspree.io/f/xjgpgldz" method="POST">
-                        <div class="field-group">
-                            <input type="text" name="name" id="name" placeholder="Adınız" required>
+                </div>
+
+                <!-- Sağ: İletişim Formu -->
+                <div class="contact-form-box">
+                    <form action="#" id="contact-form">
+                        <div class="form-group">
+                            <label>Adınız Soyadınız</label>
+                            <input type="text" class="form-control" placeholder="Örn: Yunus Barış" required>
                         </div>
-                        <div class="field-group">
-                            <input type="email" name="email" id="email" placeholder="Email" required>
+                        <div class="form-group">
+                            <label>E-Posta Adresiniz</label>
+                            <input type="email" class="form-control" placeholder="Örn: barisyunus29@gmail.com" required>
                         </div>
-                        <div class="field-group">
-                            <textarea name="message" id="message" placeholder="Mesajınız" required></textarea>
+                        <div class="form-group">
+                            <label>Mesajınız</label>
+                            <textarea class="form-control" placeholder="Bana bir şeyler yazın..."></textarea>
                         </div>
-                        <button type="submit" id="submitBtn" class="btn">Gönder</button>
+                        <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">
+                            <i class="fas fa-paper-plane" style="margin-right: 10px;"></i>Gönder
+                        </button>
                     </form>
                 </div>
+
             </div>
-        </section>
+
+        </div>
     </main>
 
     <footer>
@@ -60,4 +115,3 @@
     <script src="../assets/js/app.js"></script>
 </body>
 </html>
-
