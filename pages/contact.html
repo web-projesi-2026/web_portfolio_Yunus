@@ -48,43 +48,49 @@
                 <div class="page-header-line"></div>
             </div>
 
-            <div class="contact-wrapper fade-in-up delay-1">
+            <!-- İLETİŞİM KARTLARI GRID -->
+            <div class="projects-grid fade-in-up delay-1" style="margin-bottom: 50px;">
                 
-                <!-- Sol: İletişim Bilgileri -->
-                <div class="contact-info-box">
-                    <a href="mailto:barisyunus29@gmail.com" class="contact-method">
-                        <i class="fas fa-envelope"></i>
-                        <div class="contact-method-text">
-                            <h4>E-Posta</h4>
-                            <p>barisyunus29@gmail.com</p>
-                        </div>
-                    </a>
-                    <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank" class="contact-method">
-                        <i class="fab fa-linkedin-in"></i>
-                        <div class="contact-method-text">
-                            <h4>LinkedIn</h4>
-                            <p>Yunus Barış</p>
-                        </div>
-                    </a>
-                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="contact-method">
-                        <i class="fab fa-github"></i>
-                        <div class="contact-method-text">
-                            <h4>GitHub</h4>
-                            <p>@barisyunus29-blip</p>
-                        </div>
-                    </a>
-                    <div class="contact-method">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div class="contact-method-text">
-                            <h4>Konum</h4>
-                            <p>Kırşehir, Türkiye</p>
-                        </div>
+                <!-- E-Posta Kartı -->
+                <a href="mailto:barisyunus29@gmail.com" class="project-card glow-card">
+                    <div class="project-icon"><i class="fas fa-envelope"></i></div>
+                    <h3>E-Posta</h3>
+                    <p>Sorularınız veya iş birliği teklifleriniz için bana e-posta gönderebilirsiniz.</p>
+                    <div class="project-link-hint">
+                        <span>barisyunus29@gmail.com</span>
+                        <i class="fas fa-paper-plane"></i>
                     </div>
-                </div>
+                </a>
 
-                <!-- Sağ: İletişim Formu -->
-                <div class="contact-form-box">
-                    <form action="#" id="contact-form">
+                <!-- LinkedIn Kartı -->
+                <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank" class="project-card glow-card">
+                    <div class="project-icon"><i class="fab fa-linkedin-in"></i></div>
+                    <h3>LinkedIn</h3>
+                    <p>Profesyonel ağım üzerinden bağlantı kurabilir ve mesaj atabilirsiniz.</p>
+                    <div class="project-link-hint">
+                        <span>Yunus Barış</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </a>
+
+                <!-- GitHub Kartı -->
+                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card glow-card">
+                    <div class="project-icon"><i class="fab fa-github"></i></div>
+                    <h3>GitHub</h3>
+                    <p>Projelerimi inceleyebilir ve çalışmalarımı takip edebilirsiniz.</p>
+                    <div class="project-link-hint">
+                        <span>@barisyunus29-blip</span>
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- FORM KUTUSU (AYNI MODERN TASARIM) -->
+            <div class="contact-form-box fade-in-up delay-2 glow-card" style="position: relative; overflow: hidden;">
+                <h3 style="margin-bottom: 30px; font-size: 1.5rem; color: #fff;">Hızlı Mesaj Gönder</h3>
+                <form action="#" id="contact-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                         <div class="form-group">
                             <label>Adınız Soyadınız</label>
                             <input type="text" class="form-control" placeholder="Örn: Yunus Barış" required>
@@ -93,16 +99,15 @@
                             <label>E-Posta Adresiniz</label>
                             <input type="email" class="form-control" placeholder="Örn: barisyunus29@gmail.com" required>
                         </div>
-                        <div class="form-group">
-                            <label>Mesajınız</label>
-                            <textarea class="form-control" placeholder="Bana bir şeyler yazın..."></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer;">
-                            <i class="fas fa-paper-plane" style="margin-right: 10px;"></i>Gönder
-                        </button>
-                    </form>
-                </div>
-
+                    </div>
+                    <div class="form-group">
+                        <label>Mesajınız</label>
+                        <textarea class="form-control" placeholder="Bana bir şeyler yazın..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; border: none; cursor: pointer; padding: 18px;">
+                        <i class="fas fa-paper-plane" style="margin-right: 10px;"></i>Mesajı Gönder
+                    </button>
+                </form>
             </div>
 
         </div>
@@ -113,5 +118,17 @@
     </footer>
 
     <script src="../assets/js/app.js"></script>
+    <script>
+        // Kart parlama efekti için fare takibi (Hem kartlar hem form kutusu için)
+        document.querySelectorAll('.glow-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
 </body>
 </html>
