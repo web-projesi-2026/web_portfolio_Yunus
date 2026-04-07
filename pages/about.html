@@ -25,7 +25,8 @@
                 <li><a href="skills.html">Beceriler</a></li>
                 <li><a href="experience.html">Deneyim</a></li>
                 <li><a href="education.html">Eğitim</a></li>
-                <li><a href="project.html">Projeler</a></li>
+                <li><a href="project.html">Projeler</a></li><li><a href="gallery.html">Galeri</a></li>
+                <li><a href="gallery.html">Galeri</a></li>
                 <li><a href="contact.html">İletişim</a></li>
             </ul>
             <div class="nav-socials">
@@ -145,16 +146,5 @@
     </footer>
 
     <script src="../assets/js/app.js"></script>
-    <script>
-        document.querySelectorAll('.glow-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-    </script>
 </body>
 </html>
