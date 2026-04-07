@@ -75,7 +75,7 @@
                 </div>
 
                 <!-- Sağ: Bilgi Kartı -->
-                <div class="about-info-card fade-in-up delay-2">
+                <div class="about-info-card fade-in-up delay-2 glow-card">
                     <h3>Kişisel Bilgiler</h3>
                     <div class="info-list">
                         <div class="info-item">
@@ -110,27 +110,27 @@
             <div class="about-interests fade-in-up delay-3">
                 <h2>İlgi Alanlarım</h2>
                 <div class="interests-grid">
-                    <div class="interest-card">
+                    <div class="interest-card glow-card">
                         <i class="fas fa-globe"></i>
                         <span>Web Geliştirme</span>
                     </div>
-                    <div class="interest-card">
+                    <div class="interest-card glow-card">
                         <i class="fas fa-mobile-alt"></i>
                         <span>Mobil Uygulama</span>
                     </div>
-                    <div class="interest-card">
+                    <div class="interest-card glow-card">
                         <i class="fas fa-database"></i>
                         <span>Veritabanı</span>
                     </div>
-                    <div class="interest-card">
+                    <div class="interest-card glow-card">
                         <i class="fas fa-robot"></i>
                         <span>Yapay Zeka</span>
                     </div>
-                    <div class="interest-card">
+                    <div class="interest-card glow-card">
                         <i class="fas fa-shield-alt"></i>
                         <span>Siber Güvenlik</span>
                     </div>
-                    <div class="interest-card">
+                    <div class="interest-card glow-card">
                         <i class="fas fa-gamepad"></i>
                         <span>Oyun Geliştirme</span>
                     </div>
@@ -145,5 +145,16 @@
     </footer>
 
     <script src="../assets/js/app.js"></script>
+    <script>
+        document.querySelectorAll('.glow-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
 </body>
 </html>
