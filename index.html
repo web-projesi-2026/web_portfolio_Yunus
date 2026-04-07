@@ -21,6 +21,7 @@
             <a href="index.html" class="nav-logo">YB<span class="dot">.</span></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active">Ana Sayfa</a></li>
+                <li><a href="pages/about.html">Hakkımda</a></li>
                 <li><a href="pages/skills.html">Beceriler</a></li>
                 <li><a href="pages/experience.html">Deneyim</a></li>
                 <li><a href="pages/education.html">Eğitim</a></li>
@@ -52,6 +53,38 @@
                 </div>
             </div>
         </section>
+
+        <!-- Hakkımda Bölümü -->
+        <section id="about-section" class="page-wrapper" style="padding-top: 0;">
+            <div class="page-container">
+                <div class="page-header fade-in-up">
+                    <span class="page-header-label">Tanışalım</span>
+                    <h1>Hakkım<span class="highlight">da</span></h1>
+                    <div class="page-header-line"></div>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-text-block fade-in-up delay-1">
+                        <p>
+                            Kırşehir Ahi Evran Üniversitesi'nde <strong>Bilgisayar Programcılığı</strong> okuyorum.
+                            Kod yazmayı bir sanat olarak görüyor, her satırda temiz ve sürdürülebilir çözümler üretmeyi hedefliyorum.
+                        </p>
+                        <p>
+                            Web teknolojileri başta olmak üzere HTML, CSS, JavaScript, PHP ve C# alanlarında kendimi geliştiriyorum.
+                        </p>
+                        <a href="pages/about.html" class="btn-ghost" style="margin-left: 0; margin-top: 20px;">Daha Fazla Bilgi</a>
+                    </div>
+                    <div class="about-info-card fade-in-up delay-2 glow-card" style="position: relative; overflow: hidden;">
+                        <h3>Kişisel Bilgiler</h3>
+                        <div class="info-list">
+                            <div class="info-item"><span class="info-label">Ad Soyad</span><span class="info-value">Yunus Barış</span></div>
+                            <div class="info-item"><span class="info-label">Üniversite</span><span class="info-value">Ahi Evran Üni.</span></div>
+                            <div class="info-item"><span class="info-label">Durum</span><span class="info-value" style="color: #4ade80;">Aktif Öğrenci</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- AI Chatbot -->
@@ -77,5 +110,16 @@
     </footer>
 
     <script src="assets/js/app.js"></script>
+    <script>
+        document.querySelectorAll('.glow-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
 </body>
 </html>
