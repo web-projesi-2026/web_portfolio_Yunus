@@ -1,4 +1,4 @@
-/* Genel Ayarlar */
+/* GENEL AYARLAR */
 * {
     margin: 0;
     padding: 0;
@@ -10,347 +10,237 @@ body {
     background-color: #0a0a0a;
     color: #ffffff;
     line-height: 1.6;
-    overflow-x: hidden; /* Yatay taşmayı engellemek için */
+    overflow-x: hidden;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: 0.3s;
+/* ÖZEL İMLEÇ */
+.cursor {
+    width: 8px;
+    height: 8px;
+    background-color: #e63946;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
 }
 
-ul {
-    list-style: none;
+.cursor-trail {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(230, 57, 70, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    transition: left 0.15s ease-out, top 0.15s ease-out;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Navbar */
+/* NAVBAR (Modern Cam Efekti) */
 header {
-    background-color: rgba(10, 10, 10, 0.95);
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(15px);
     padding: 20px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
-.logo {
+.nav-logo {
     font-size: 1.8rem;
-    font-weight: bold;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
-.logo span {
+.nav-logo .dot {
     color: #e63946;
 }
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 35px;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .nav-links a:hover, .nav-links a.active {
     color: #e63946;
+    transform: translateY(-2px);
 }
 
-/* Hamburger Menü */
+.nav-socials {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-socials a {
+    font-size: 1.2rem;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.nav-socials a:hover {
+    color: #e63946;
+    transform: scale(1.2);
+}
+
+/* HAMBURGER */
 .hamburger {
     display: none;
     flex-direction: column;
+    gap: 6px;
     cursor: pointer;
-    gap: 5px;
 }
 
 .hamburger span {
-    width: 25px;
-    height: 3px;
+    width: 28px;
+    height: 2px;
     background-color: #fff;
-    transition: 0.3s;
+    transition: 0.4s;
 }
 
-/* Hero Section */
+/* HERO SECTION */
 .hero {
-    height: 80vh;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 0 20px;
 }
 
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-}
-
-.hero h1 span {
+.hero-tag {
+    font-size: 0.8rem;
     color: #e63946;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
-    margin: 0 auto 30px;
-    color: #ccc;
-}
-
-.cta-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.btn {
-    padding: 12px 30px;
-    background-color: #e63946;
-    color: #fff;
-    border-radius: 50px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background-color: #c12a35;
-    transform: translateY(-3px);
-}
-
-.btn-outline {
-    background-color: transparent;
-    border: 2px solid #e63946;
-}
-
-/* Projeler Sayfası */
-.project-page {
-    padding: 80px 0;
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.project-card {
-    background-color: #1a1a1a;
-    border-radius: 20px;
-    padding: 20px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-}
-
-.project-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.project-glow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(230, 57, 70, 0), transparent 60%);
-    transition: background 0.1s ease;
-}
-
-/* Beceriler Bölümü (About sayfasında) */
-.skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.skill-item {
-    padding: 10px 25px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: 0.3s;
-}
-
-.skill-item:hover {
-    background-color: #e63946;
-    border-color: #e63946;
-}
-
-/* İletişim Formu */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 50px;
-    margin-top: 40px;
-}
-
-.field-group {
+    letter-spacing: 4px;
+    text-transform: uppercase;
     margin-bottom: 20px;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 15px;
-    background-color: #1a1a1a;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border-radius: 10px;
-    font-family: inherit;
+.hero-name {
+    font-size: 5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.1;
 }
 
-textarea {
-    height: 150px;
+.hero-name span.italic {
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
 }
 
-/* AI Chatbot */
-#ai-chat-toggle {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+.hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 650px;
+    margin: 0 auto 40px;
+}
+
+/* BUTONLAR */
+.btn-primary {
+    padding: 15px 35px;
     background-color: #e63946;
     color: #fff;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
-    z-index: 2000;
+    border-radius: 50px;
+    font-weight: 700;
+    display: inline-block;
+    transition: 0.4s;
 }
+
+.btn-primary:hover {
+    background-color: #c12a35;
+    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.4);
+    transform: translateY(-5px);
+}
+
+.btn-ghost {
+    padding: 15px 35px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 700;
+    display: inline-block;
+    transition: 0.4s;
+    margin-left: 15px;
+}
+
+.btn-ghost:hover {
+    border-color: #e63946;
+    background-color: rgba(230, 57, 70, 0.1);
+    transform: translateY(-5px);
+}
+
+/* AI CHATBOT */
+#ai-chat-toggle {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 65px; height: 65px; border-radius: 50%;
+    background-color: #e63946; color: #fff;
+    border: none; cursor: pointer; font-size: 1.6rem;
+    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.5);
+    z-index: 2000; transition: 0.3s;
+}
+
+#ai-chat-toggle:hover { transform: scale(1.1); }
 
 #ai-chat-container {
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    width: 350px;
-    background-color: #1a1a1a;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    z-index: 2000;
-    display: none;
-    flex-direction: column;
+    position: fixed; bottom: 110px; right: 30px;
+    width: 360px; background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(20px); border-radius: 25px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: none; flex-direction: column; z-index: 2000;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
 }
 
 .ai-chat-header {
-    padding: 15px 20px;
-    background-color: #e63946;
-    border-radius: 20px 20px 0 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: #e63946; color: white; padding: 20px;
+    border-radius: 25px 25px 0 0; display: flex; justify-content: space-between;
 }
 
-#ai-chat-body {
-    height: 300px;
-    padding: 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+#ai-chat-body { height: 350px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
+
+.ai-message { background: rgba(255, 255, 255, 0.05); padding: 12px 18px; border-radius: 15px 15px 15px 0; align-self: flex-start; max-width: 85%; }
+
+.user-message { background: #e63946; padding: 12px 18px; border-radius: 15px 15px 0 15px; align-self: flex-end; max-width: 85%; }
+
+.ai-chat-footer { padding: 20px; display: flex; gap: 10px; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+
+.ai-chat-footer input { flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: white; padding: 12px 20px; border-radius: 50px; }
+
+/* RESPONSIVE (MEDIA QUERIES) */
+@media (max-width: 1024px) {
+    .nav-links { gap: 20px; }
+    .hero-name { font-size: 4rem; }
 }
 
-.ai-message, .user-message {
-    padding: 10px 15px;
-    border-radius: 15px;
-    max-width: 80%;
-}
-
-.ai-message {
-    background-color: #2a2a2a;
-    align-self: flex-start;
-}
-
-.user-message {
-    background-color: #e63946;
-    align-self: flex-end;
-}
-
-.ai-chat-footer {
-    padding: 15px;
-    display: flex;
-    gap: 10px;
-}
-
-.ai-chat-footer input {
-    padding: 10px;
-}
-
-.ai-chat-footer button {
-    background-color: #e63946;
-    border: none;
-    color: #fff;
-    padding: 0 15px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-/* Footer */
-footer {
-    padding: 40px 0;
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Responsive Tasarım (Media Queries) */
 @media (max-width: 768px) {
+    .navbar { padding: 0 25px; }
     .nav-links {
-        display: none; /* Mobilde gizle */
-        position: fixed;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background-color: #0a0a0a;
-        flex-direction: column;
-        padding: 40px;
-        text-align: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: none;
+        position: fixed; top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
+        background: #0a0a0a; flex-direction: column; padding: 50px; gap: 40px;
+        text-align: center; z-index: 999;
     }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #ai-chat-container {
-        width: 90%;
-        right: 5%;
-    }
+    .nav-links.active { display: flex; }
+    .hamburger { display: flex; }
+    .nav-socials { display: none; }
+    .hero-name { font-size: 3rem; }
+    .hero-sub { font-size: 1rem; }
+    .btn-ghost { margin-left: 0; margin-top: 15px; }
+    #ai-chat-container { width: calc(100% - 40px); right: 20px; }
 }
