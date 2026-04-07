@@ -38,6 +38,7 @@ if (hamburger) {
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         hamburger.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
         
         // Hamburger animasyonu (CSS ile desteklenecek)
         const spans = hamburger.querySelectorAll('span');
@@ -117,18 +118,16 @@ if (sendAi) {
 /* ============================================
    MERKEZİ PARLAMA (GLOW) EFEKTİ YÖNETİCİSİ
    ============================================ */
-document.addEventListener('DOMContentLoaded', () => {
-    const updateGlow = (e) => {
-        const cards = document.querySelectorAll('.glow-card');
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
-        });
-    };
+const updateGlow = (e) => {
+    const cards = document.querySelectorAll('.glow-card');
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+    });
+};
 
-    // Fare hareketini tüm sayfa genelinde dinle (performans için tek bir dinleyici)
-    document.addEventListener('mousemove', updateGlow);
-});
+// Fare hareketini tüm sayfa genelinde dinle
+document.addEventListener('mousemove', updateGlow);
