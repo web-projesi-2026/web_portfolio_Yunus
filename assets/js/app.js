@@ -113,3 +113,22 @@ if (sendAi) {
     });
     aiInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendAi.click(); });
 }
+
+/* ============================================
+   MERKEZİ PARLAMA (GLOW) EFEKTİ YÖNETİCİSİ
+   ============================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    const updateGlow = (e) => {
+        const cards = document.querySelectorAll('.glow-card');
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    };
+
+    // Fare hareketini tüm sayfa genelinde dinle (performans için tek bir dinleyici)
+    document.addEventListener('mousemove', updateGlow);
+});
