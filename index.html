@@ -6,16 +6,19 @@
     <title>Yunus Barış | Ana Sayfa</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <!-- ÖZEL İMLEÇ -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-trail" id="cursorTrail"></div>
 
     <header>
         <nav class="navbar">
-            <div class="nav-logo">YB<span class="dot">.</span></div>
-            
+            <a href="index.html" class="nav-logo">YB<span class="dot">.</span></a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active">Hakkımda</a></li>
                 <li><a href="pages/skills.html">Beceriler</a></li>
@@ -24,13 +27,10 @@
                 <li><a href="pages/project.html">Projeler</a></li>
                 <li><a href="pages/contact.html">İletişim</a></li>
             </ul>
-
-            <!-- SOSYAL MEDYA (NAV) -->
             <div class="nav-socials">
                 <a href="https://github.com/barisyunus29-blip" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank"><i class="fab fa-linkedin"></i></a>
             </div>
-
             <div class="hamburger" id="hamburger">
                 <span></span><span></span><span></span>
             </div>
@@ -43,7 +43,7 @@
                 <div class="hero-tag">Bilgisayar Programcılığı Öğrencisi</div>
                 <h1 class="hero-name"><span>Yunus</span> <span class="italic">Barış</span></h1>
                 <p class="hero-sub">
-                    Geleceğin teknolojilerini bugünün temiz koduyla inşa ediyorum.<br/>
+                    Geleceğin teknolojilerini bugünün temiz koduyla inşa ediyorum.<br>
                     Karmaşık problemleri basit ve etkili çözümlere indirgemek.
                 </p>
                 <div class="hero-cta">
@@ -64,8 +64,10 @@
             <div class="ai-message">Merhaba! Ben Yunus'un AI asistanıyım. Size nasıl yardımcı olabilirim?</div>
         </div>
         <div class="ai-chat-footer">
-            <input type="text" id="ai-input" placeholder="Mesaj yazın...">
-            <button id="send-ai"><i class="fas fa-paper-plane"></i></button>
+            <input type="text" id="ai-input" placeholder="Bir şeyler sorun...">
+            <button id="send-ai" style="background:#e63946;border:none;color:#fff;padding:12px 18px;border-radius:50px;cursor:pointer;font-family:inherit;">
+                <i class="fas fa-paper-plane"></i>
+            </button>
         </div>
     </div>
     <button id="ai-chat-toggle"><i class="fas fa-robot"></i></button>
