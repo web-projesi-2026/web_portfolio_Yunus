@@ -51,7 +51,7 @@
             <!-- EĞİTİM KARTLARI -->
             <div class="education-grid">
 
-                <div class="edu-card fade-in-up delay-1">
+                <div class="edu-card fade-in-up delay-1 glow-card">
                     <div class="edu-icon"><i class="fas fa-university"></i></div>
                     <div class="edu-date">2022 — Devam Ediyor</div>
                     <h3>Bilgisayar Programcılığı</h3>
@@ -63,7 +63,7 @@
                     </p>
                 </div>
 
-                <div class="edu-card fade-in-up delay-2">
+                <div class="edu-card fade-in-up delay-2 glow-card">
                     <div class="edu-icon"><i class="fas fa-school"></i></div>
                     <div class="edu-date">2018 — 2022</div>
                     <h3>Lise Eğitimi</h3>
@@ -74,7 +74,7 @@
                     </p>
                 </div>
 
-                <div class="edu-card fade-in-up delay-3">
+                <div class="edu-card fade-in-up delay-3 glow-card">
                     <div class="edu-icon"><i class="fas fa-certificate"></i></div>
                     <div class="edu-date">2023</div>
                     <h3>Web Geliştirme Sertifikası</h3>
@@ -85,7 +85,7 @@
                     </p>
                 </div>
 
-                <div class="edu-card fade-in-up delay-4">
+                <div class="edu-card fade-in-up delay-4 glow-card">
                     <div class="edu-icon"><i class="fas fa-award"></i></div>
                     <div class="edu-date">2024</div>
                     <h3>PHP &amp; MySQL Uzmanlık Sertifikası</h3>
@@ -106,5 +106,16 @@
     </footer>
 
     <script src="../assets/js/app.js"></script>
+    <script>
+        document.querySelectorAll('.glow-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
 </body>
 </html>
