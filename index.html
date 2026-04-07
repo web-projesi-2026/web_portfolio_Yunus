@@ -1,280 +1,73 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yunus Barış — Portfolyo</title>
-
-  <!-- CSS Bağlantısı -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
-  
-  <!-- FONT AWESOME İKONLARI -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yunus Barış | Ana Sayfa</title>
+    <!-- Klasör yapınızın assets/css/style.css olduğundan emin olun -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Hızlı düzeltme: Chatbot görünürlüğü için */
+        #ai-chat-container {
+            position: fixed; bottom: 90px; right: 20px; width: 320px;
+            background: #1a1a1a; border-radius: 15px; border: 1px solid #333;
+            flex-direction: column; z-index: 1000; display: none;
+        }
+        .ai-chat-header { background: #e63946; color: white; padding: 12px; border-radius: 15px 15px 0 0; display: flex; justify-content: space-between; }
+        .ai-message { background: #333; padding: 10px; border-radius: 10px; margin-bottom: 10px; font-size: 0.9rem; }
+        .user-message { background: #e63946; padding: 10px; border-radius: 10px; margin-bottom: 10px; align-self: flex-end; font-size: 0.9rem; }
+    </style>
 </head>
-
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">YB<span>.</span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Ana Sayfa</a></li>
+                <li><a href="pages/about.html">Hakkımda</a></li>
+                <li><a href="pages/project.html">Projeler</a></li>
+                <li><a href="pages/contact.html">İletişim</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
 
-<!-- ÖZEL İMLEÇ -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-trail" id="cursorTrail"></div>
+    <main>
+        <section class="hero">
+            <div class="hero-content" style="text-align: center; padding: 100px 20px;">
+                <h1 style="font-size: 3rem; margin-bottom: 20px;">Geleceği <span style="color: #e63946;">Kodla</span> İnşa Ediyorum</h1>
+                <p style="font-size: 1.2rem; color: #ccc; margin-bottom: 30px;">Bilgisayar Programcılığı öğrencisi olarak modern ve ölçeklenebilir çözümler üretiyorum.</p>
+                <div class="cta-buttons" style="display: flex; gap: 15px; justify-content: center;">
+                    <a href="pages/project.html" class="btn" style="background: #e63946; padding: 12px 25px; border-radius: 50px; color: white;">Projelerimi Gör</a>
+                    <a href="pages/contact.html" class="btn btn-outline" style="border: 2px solid #e63946; padding: 12px 25px; border-radius: 50px; color: white;">İletişime Geç</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="nav-logo">YB<span class="dot">.</span></div>
-
-  <ul class="nav-links">
-    <li><a href="#about">Hakkımda</a></li>
-    <li><a href="#skills">Beceriler</a></li>
-    <li><a href="#experience">Deneyim</a></li>
-    <li><a href="#education">Eğitim</a></li>
-    <li><a href="#projects">Projeler</a></li>
-    <li><a href="#contact">İletişim</a></li>
-  </ul>
-
-  <!-- SOSYAL MEDYA İKONLARI (NAV) -->
-  <div class="nav-socials" style="display: flex; gap: 15px; margin-left: 20px;">
-    <a href="https://github.com/barisyunus29-blip" target="_blank" style="color: #fff; font-size: 1.2rem; transition: 0.3s;"><i class="fab fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank" style="color: #fff; font-size: 1.2rem; transition: 0.3s;"><i class="fab fa-linkedin"></i></a>
-    <a href="mailto:baris.yunus@ogr.ahievran.edu.tr" style="color: #fff; font-size: 1.2rem; transition: 0.3s;"><i class="fas fa-envelope"></i></a>
-  </div>
-
-  <!-- HAMBURGER -->
-  <div class="hamburger" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<!-- MOBİL MENÜ -->
-<div class="mobile-menu" id="mobileMenu">
-  <ul>
-    <li><a href="#about" class="mobile-link">Hakkımda</a></li>
-    <li><a href="#skills" class="mobile-link">Beceriler</a></li>
-    <li><a href="#experience" class="mobile-link">Deneyim</a></li>
-    <li><a href="#education" class="mobile-link">Eğitim</a></li>
-    <li><a href="#projects" class="mobile-link">Projeler</a></li>
-    <li><a href="#contact" class="mobile-link">İletişim</a></li>
-    <li style="margin-top: 20px; display: flex; gap: 20px; justify-content: center;">
-      <a href="https://github.com/barisyunus29-blip" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank" style="color: #fff; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
-      <a href="mailto:baris.yunus@ogr.ahievran.edu.tr" style="color: #fff; font-size: 1.5rem;"><i class="fas fa-envelope"></i></a>
-    </li>
-  </ul>
-</div>
-
-<!-- HERO -->
-<section class="hero" id="hero">
-  <canvas id="bgCanvas"></canvas>
-  <div class="noise-overlay"></div>
-
-  <div class="hero-content reveal-up">
-    <div class="hero-tag">Bilgisayar Programcılığı Öğrencisi</div>
-
-    <h1 class="hero-name">
-      <span>Yunus</span>
-      <span class="italic">Barış</span>
-    </h1>
-
-    <p class="hero-sub">
-      Geleceğin teknolojilerini bugünün temiz koduyla inşa ediyorum.<br/>
-      Karmaşık problemleri basit ve etkili çözümlere indirgemek.
-    </p>
-
-    <div class="hero-cta">
-      <a href="#projects" class="btn-primary">Projeleri Gör</a>
-      <a href="#contact" class="btn-ghost">İletişime Geç</a>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="section about-section" id="about">
-  <div class="section-inner reveal-up">
-    <h2 class="section-title">Merhaba, ben <em>Yunus Barış</em></h2>
-    <p class="about-desc">
-      Bilgisayar programcılığı öğrencisiyim. Kod yazmayı bir sanat olarak görüyorum.
-    </p>
-    
-    <div class="about-stats">
-      <div class="stat">
-        <span class="stat-num" data-target="12">15</span>
-        <span class="stat-label">Tamamlanan Proje</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" data-target="450">10</span>
-        <span class="stat-label">Öğrendiğim Diller</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BECERİLER BÖLÜMÜ -->
-<section class="section skills-section" id="skills">
-  <div class="section-inner reveal-up">
-    <h2 class="section-title">Beceriler</h2>
-    <div class="skills-container" style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; justify-content: center;">
-      
-      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
-            onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
-            onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        <i class="fab fa-html5" style="color: #e34f26;"></i> HTML5
-      </span>
-
-      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
-            onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
-            onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        <i class="fab fa-css3-alt" style="color: #1572b6;"></i> CSS3 / Tailwind
-      </span>
-
-      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
-            onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
-            onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        <i class="fab fa-js" style="color: #f7df1e;"></i> JavaScript
-      </span>
-
-      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
-            onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
-            onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        <i class="fab fa-php" style="color: #777bb4;"></i> PHP / MySQL
-      </span>
-
-      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
-            onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
-            onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        <i class="fas fa-code" style="color: #512bd4;"></i> C# / .NET
-      </span>
-
-      <span class="skill-tag" style="padding: 10px 25px; border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace;"
-            onmouseover="this.style.backgroundColor='#e63946'; this.style.borderColor='#e63946'; this.style.transform='translateY(-5px)';"
-            onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)';">
-        <i class="fab fa-github" style="color: #ffffff;"></i> Git / GitHub
-      </span>
-
-    </div>
-  </div>
-</section>
-
-<!-- DENEYİM BÖLÜMÜ -->
-<section class="section experience-section" id="experience">
-  <div class="section-inner reveal-up">
-    <h2 class="section-title">Deneyim</h2>
-    <div class="experience-list">
-      <div class="experience-item">
-        <h3>Stajyer Geliştirici</h3>
-        <p>Şirket Adı | 2023 - Günümüz</p>
-        <p>Web projeleri üzerinde çalışma ve teknik destek sağlama.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EĞİTİM BÖLÜMÜ -->
-<section class="section education-section" id="education">
-  <div class="section-inner reveal-up">
-    <h2 class="section-title">Eğitim</h2>
-    <div class="education-list">
-      <div class="education-item">
-        <h3>Bilgisayar Programcılığı</h3>
-        <p>Kırşehir Ahi Evran Üniversitesi | 2022 - 2024</p>
-        <p>Algoritmalar, Veri Yapıları ve Web Teknolojileri odaklı eğitim.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section class="section projects-section" id="projects">
-  <div class="section-inner">
-    <h2 class="section-title">Projelerim</h2>
-    <div class="projects-grid">
-      <div class="project-card reveal-up" onclick="window.open('https://barisyunus29-blip.github.io/web_portfolyo_-ablonu_yunus/', '_blank')" style="cursor: pointer;">
-        <div class="project-glow"></div>
-        <h3>E-Ticaret Sitesi</h3>
-        <p>Modern bir alışveriş deneyimi.</p>
-        <div class="project-link" style="margin-top: 15px; font-size: 0.8rem; color: #e63946;">
-          Projeyi Görüntüle <i class="fas fa-external-link-alt"></i>
+    <!-- AI Chatbot -->
+    <div id="ai-chat-container">
+        <div class="ai-chat-header">
+            <span><i class="fas fa-robot"></i> AI Asistan</span>
+            <button id="close-chat" style="background:none; border:none; color:white; cursor:pointer;"><i class="fas fa-times"></i></button>
         </div>
-      </div>
+        <div id="ai-chat-body" style="height: 250px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column;">
+            <div class="ai-message">Merhaba! Ben Yunus'un AI asistanıyım. Size nasıl yardımcı olabilirim?</div>
+        </div>
+        <div class="ai-chat-footer" style="padding: 10px; display: flex; gap: 5px; border-top: 1px solid #333;">
+            <input type="text" id="ai-input" placeholder="Mesaj yazın..." style="flex:1; padding: 8px; border-radius: 5px; border:none; background:#2a2a2a; color:white;">
+            <button id="send-ai" style="background:#e63946; color:white; border:none; padding: 8px 15px; border-radius: 5px; cursor:pointer;"><i class="fas fa-paper-plane"></i></button>
+        </div>
     </div>
-  </div>
-</section>
+    <button id="ai-chat-toggle" style="position:fixed; bottom:20px; right:20px; width:60px; height:60px; border-radius:50%; background:#e63946; color:white; border:none; cursor:pointer; font-size:24px; z-index:1000; box-shadow: 0 4px 15px rgba(230,57,70,0.4 );"><i class="fas fa-robot"></i></button>
 
-<!-- CONTACT -->
-<section class="section contact-section" id="contact">
-  <div class="section-inner reveal-up">
-    <h2 class="section-title">İletişim</h2>
+    <footer style="text-align: center; padding: 40px 0; border-top: 1px solid #333; margin-top: 50px;">
+        <p>&copy; 2024 Yunus Barış. Tüm Hakları Saklıdır.</p>
+    </footer>
 
-    <div class="contact-methods" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-bottom: 40px;">
-        <a href="mailto:baris.yunus@ogr.ahievran.edu.tr" style="display: flex; align-items: center; gap: 10px; color: #fff; transition: 0.3s;">
-            <i class="fas fa-envelope" style="color: #e63946;"></i> baris.yunus@ogr.ahievran.edu.tr
-        </a>
-        <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank" style="display: flex; align-items: center; gap: 10px; color: #fff; transition: 0.3s;">
-            <i class="fab fa-linkedin" style="color: #0077b5;"></i> LinkedIn Profilim
-        </a>
-        <a href="https://github.com/barisyunus29-blip" target="_blank" style="display: flex; align-items: center; gap: 10px; color: #fff; transition: 0.3s;">
-            <i class="fab fa-github" style="color: #fff;"></i> GitHub Profilim
-        </a>
-    </div>
-
-    <div class="steps-bar">
-      <div class="step active" data-step="1">1</div>
-      <div class="step" data-step="2">2</div>
-      <div class="step" data-step="3">3</div>
-    </div>
-
-    <form id="contactForm" action="https://formspree.io/f/xjgpgldz" method="POST">
-      <div class="form-step active" data-step="1">
-        <div class="field-group">
-          <input type="text" name="name" id="name" placeholder="Adınız" required>
-        </div>
-        <div class="field-group">
-          <input type="email" name="email" id="email" placeholder="Email" required>
-        </div>
-        <button type="button" onclick="nextStep(1)" class="btn-primary">Sonraki</button>
-      </div>
-
-      <div class="form-step" data-step="2">
-        <div class="field-group">
-          <input type="hidden" name="topic" id="topic">
-          <div class="pills-container">
-            <div class="pill" data-topic="Web Tasarım">Web Tasarım</div>
-            <div class="pill" data-topic="Yazılım">Yazılım</div>
-            <div class="pill" data-topic="Diğer">Diğer</div>
-          </div>
-        </div>
-        <div class="field-group">
-          <textarea name="message" id="message" placeholder="Mesajınız" required></textarea>
-        </div>
-        <div class="btn-group">
-          <button type="button" onclick="prevStep(2)" class="btn-ghost">Geri</button>
-          <button type="button" onclick="nextStep(2)" class="btn-primary">Sonraki</button>
-        </div>
-      </div>
-
-      <div class="form-step" data-step="3">
-        <div class="summary">
-          <p><strong>Ad:</strong> <span id="sumName"></span></p>
-          <p><strong>Email:</strong> <span id="sumEmail"></span></p>
-          <p><strong>Konu:</strong> <span id="sumTopic"></span></p>
-          <p><strong>Mesaj:</strong> <span id="sumMsg"></span></p>
-        </div>
-        <div class="btn-group">
-          <button type="button" onclick="prevStep(3)" class="btn-ghost">Geri</button>
-          <button type="submit" id="submitBtn" class="btn-primary">Gönder</button>
-        </div>
-      </div>
-    </form>
-
-    <div id="formSuccess" class="form-success">
-      <h3>Mesaj Gönderildi!</h3>
-      <p>En kısa sürede dönüş yapacağım.</p>
-      <button onclick="resetForm()" class="btn-ghost">Yeni Mesaj</button>
-    </div>
-  </div>
-</section>
-
-<!-- JS Bağlantısı -->
-<script src="assets/js/app.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
