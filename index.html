@@ -11,6 +11,25 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- 1. PRELOADER: Tüm sayfaların en üstüne (<body> etiketinden hemen sonra) yapıştırın -->
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
+
+<!-- 2. LIGHTBOX: Sadece galeri (gallery.html) sayfasının en altına (</body> öncesine) yapıştırın -->
+<div id="lightbox" class="lightbox">
+    <span class="close-button">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="">
+</div>
+
+<!-- 3. PARALLAX: İstediğiniz sayfada (örneğin ana sayfa) bir bölüm olarak kullanın -->
+<section class="parallax-section" style="background-image: url('assets/img/arkaplan.jpg');">
+    <div class="parallax-container">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Yunus Barış</h2>
+        <p style="font-size: 1.2rem;">Geleceği kodluyoruz.</p>
+    </div>
+</section>
+
 
     <!-- ÖZEL İMLEÇ -->
     <div class="cursor" id="cursor"></div>
