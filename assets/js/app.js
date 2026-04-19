@@ -130,23 +130,23 @@ const updateGlow = (e) => {
 };
 // Fare hareketini tüm sayfa genelinde dinle
 document.addEventListener('mousemove', updateGlow);
-/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ (GÜNCELLENMİŞ) --- */
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. PRELOADER FONKSİYONU (Takılma Engelleme Garantili)
+/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ (KESİN ÇÖZÜM) --- */
+(function() {
+    // 1. PRELOADER FONKSİYONU
     const preloader = document.getElementById('preloader');
     const hidePreloader = () => {
         if (preloader) {
-            preloader.classList.add('hidden');
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
             setTimeout(() => {
                 preloader.style.display = 'none';
             }, 500);
         }
     };
 
-    // Sayfa yüklenince veya en geç 1.5 saniye sonra mutlaka kapat
+    // Sayfa yüklendiğinde veya en geç 1 saniye sonra kapat
     window.addEventListener('load', hidePreloader);
-    setTimeout(hidePreloader, 1500); 
+    setTimeout(hidePreloader, 1000); 
 
     // 2. LIGHTBOX FONKSİYONU
     const lightbox = document.getElementById('lightbox');
@@ -187,5 +187,5 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { passive: true });
     }
-});
+})();
 /* --- ETKİLEŞİM PAKETİ SONU --- */
