@@ -901,44 +901,51 @@ body.menu-open {
         to { opacity: 1; transform: translateY(0); }
     }
 }
-/* --- GENEL ETKİLEŞİM PAKETİ CSS --- */
+/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ (GÜNCELLENMİŞ CSS) --- */
 
-/* Preloader Stilleri */
+/* 1. Preloader Stilleri */
 #preloader {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     z-index: 9999; background-color: #0a0a0a;
     display: flex; justify-content: center; align-items: center;
-    transition: opacity 0.5s ease-out;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 1; visibility: visible;
 }
-#preloader.hidden { opacity: 0; visibility: hidden; }
+
+/* Preloader Gizlendiğinde */
+#preloader.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .spinner {
-    border: 4px solid rgba(255, 71, 87, 0.1);
-    border-top: 4px solid #ff4757; /* Sitenizin kırmızı tonu */
+    border: 4px solid rgba(230, 57, 70, 0.1);
+    border-top: 4px solid #e63946; /* Sitenizin ana kırmızı rengi */
     border-radius: 50%; width: 50px; height: 50px;
     animation: spin 1s linear infinite;
 }
 @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* Lightbox Stilleri */
+/* 2. Lightbox Stilleri */
 .lightbox {
     display: none; position: fixed; z-index: 10000;
     left: 0; top: 0; width: 100%; height: 100%;
     background-color: rgba(0, 0, 0, 0.95);
     justify-content: center; align-items: center;
 }
-.lightbox.active { display: flex; }
+.lightbox.active { display: flex !important; }
 .lightbox-content { 
     max-width: 90%; max-height: 85%; border-radius: 8px; 
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    animation: zoom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
 .close-button { 
     position: absolute; top: 20px; right: 30px; color: #fff; 
     font-size: 50px; cursor: pointer; transition: 0.3s;
 }
-.close-button:hover { color: #ff4757; }
+.close-button:hover { color: #e63946; }
 
-/* Paralaks Stilleri */
+/* 3. Paralaks Stilleri */
 .parallax-section {
     height: 450px; background-attachment: fixed;
     background-position: center; background-repeat: no-repeat; background-size: cover;
@@ -957,5 +964,5 @@ body.menu-open {
     .close-button { top: 10px; right: 20px; font-size: 40px; padding: 10px; }
     .parallax-section { background-attachment: scroll; height: 350px; }
 }
-@keyframes zoom { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
