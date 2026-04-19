@@ -901,3 +901,68 @@ body.menu-open {
         to { opacity: 1; transform: translateY(0); }
     }
 }
+/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ (GÜNCELLENMİŞ CSS) --- */
+
+/* 1. Preloader Stilleri */
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 9999; background-color: #0a0a0a;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 1; visibility: visible;
+}
+
+/* Preloader Gizlendiğinde */
+#preloader.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.spinner {
+    border: 4px solid rgba(230, 57, 70, 0.1);
+    border-top: 4px solid #e63946; /* Sitenizin ana kırmızı rengi */
+    border-radius: 50%; width: 50px; height: 50px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* 2. Lightbox Stilleri */
+.lightbox {
+    display: none; position: fixed; z-index: 10000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    justify-content: center; align-items: center;
+}
+.lightbox.active { display: flex !important; }
+.lightbox-content { 
+    max-width: 90%; max-height: 85%; border-radius: 8px; 
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+.close-button { 
+    position: absolute; top: 20px; right: 30px; color: #fff; 
+    font-size: 50px; cursor: pointer; transition: 0.3s;
+}
+.close-button:hover { color: #e63946; }
+
+/* 3. Paralaks Stilleri */
+.parallax-section {
+    height: 450px; background-attachment: fixed;
+    background-position: center; background-repeat: no-repeat; background-size: cover;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+}
+.parallax-section::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.65); z-index: 1;
+}
+.parallax-container { position: relative; z-index: 2; color: white; text-align: center; padding: 20px; }
+
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 768px) {
+    .lightbox-content { max-width: 95%; max-height: 75%; }
+    .close-button { top: 10px; right: 20px; font-size: 40px; padding: 10px; }
+    .parallax-section { background-attachment: scroll; height: 350px; }
+}
+@keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+

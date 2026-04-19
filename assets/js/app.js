@@ -128,6 +128,64 @@ const updateGlow = (e) => {
         card.style.setProperty('--mouse-y', `${y}px`);
     });
 };
-
 // Fare hareketini tüm sayfa genelinde dinle
 document.addEventListener('mousemove', updateGlow);
+/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ (KESİN ÇÖZÜM) --- */
+(function() {
+    // 1. PRELOADER FONKSİYONU
+    const preloader = document.getElementById('preloader');
+    const hidePreloader = () => {
+        if (preloader) {
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }
+    };
+
+    // Sayfa yüklendiğinde veya en geç 1 saniye sonra kapat
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 1000); 
+
+    // 2. LIGHTBOX FONKSİYONU
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const triggers = document.querySelectorAll('.lightbox-trigger');
+
+    if (lightbox && triggers.length > 0) {
+        triggers.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeBtn = document.querySelector('.close-button');
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        closeBtn?.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+    }
+
+    // 3. PARALLAX FONKSİYONU
+    const parallaxSections = document.querySelectorAll('.parallax-section');
+    if (parallaxSections.length > 0 && window.innerWidth > 1024) {
+        window.addEventListener('scroll', () => {
+            let scrollVal = window.pageYOffset;
+            parallaxSections.forEach(section => {
+                window.requestAnimationFrame(() => {
+                    section.style.backgroundPositionY = (scrollVal * 0.4) + 'px';
+                });
+            });
+        }, { passive: true });
+    }
+})();
+/* --- ETKİLEŞİM PAKETİ SONU --- */
