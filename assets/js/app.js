@@ -128,23 +128,27 @@ const updateGlow = (e) => {
         card.style.setProperty('--mouse-y', `${y}px`);
     });
 };
-
-/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ (Lightbox, Preloader, Parallax) --- */
+// Fare hareketini tüm sayfa genelinde dinle
+document.addEventListener('mousemove', updateGlow);
+/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ (GÜNCELLENMİŞ) --- */
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. PRELOADER FONKSİYONU
+    // 1. PRELOADER FONKSİYONU (Takılma Engelleme Garantili)
     const preloader = document.getElementById('preloader');
     const hidePreloader = () => {
         if (preloader) {
             preloader.classList.add('hidden');
-            setTimeout(() => preloader.style.display = 'none', 500);
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
         }
     };
-    window.addEventListener('load', hidePreloader);
-    // Güvenlik önlemi: Sayfa çok yavaşsa 3 saniye sonra otomatik kapat
-    setTimeout(hidePreloader, 3000);
 
-    // 2. LIGHTBOX FONKSİYONU (Galeri Resimleri İçin)
+    // Sayfa yüklenince veya en geç 1.5 saniye sonra mutlaka kapat
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 1500); 
+
+    // 2. LIGHTBOX FONKSİYONU
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const triggers = document.querySelectorAll('.lightbox-trigger');
@@ -156,14 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 lightboxImg.src = img.src;
                 lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Sayfa kaydırmayı durdur
+                document.body.style.overflow = 'hidden';
             });
         });
 
         const closeBtn = document.querySelector('.close-button');
         const closeLightbox = () => {
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Sayfa kaydırmayı aç
+            document.body.style.overflow = 'auto';
         };
 
         closeBtn?.addEventListener('click', closeLightbox);
@@ -171,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
     }
 
-    // 3. PARALLAX FONKSİYONU (Sadece Masaüstü İçin Optimize Edildi)
+    // 3. PARALLAX FONKSİYONU
     const parallaxSections = document.querySelectorAll('.parallax-section');
     if (parallaxSections.length > 0 && window.innerWidth > 1024) {
         window.addEventListener('scroll', () => {
@@ -185,7 +189,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 /* --- ETKİLEŞİM PAKETİ SONU --- */
-
-
-// Fare hareketini tüm sayfa genelinde dinle
-document.addEventListener('mousemove', updateGlow);
