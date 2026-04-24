@@ -224,3 +224,28 @@ if (contactForm) {
         }
     });
 }
+
+/* ============================================
+   KAYAN PARÇACIKLAR VE ANIMASYONLAR
+   ============================================ */
+const initializeParticles = () => {
+    const particlesContainers = document.querySelectorAll('.floating-particles');
+    
+    particlesContainers.forEach(container => {
+        // Eğer zaten parçacıklar varsa, yeniden oluşturma
+        if (container.children.length > 0) return;
+        
+        for (let i = 0; i < 9; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            container.appendChild(particle);
+        }
+    });
+};
+
+// Sayfa yüklendiğinde parçacıkları başlat
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeParticles);
+} else {
+    initializeParticles();
+}
