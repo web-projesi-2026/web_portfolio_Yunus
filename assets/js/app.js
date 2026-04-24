@@ -189,3 +189,65 @@ document.addEventListener('mousemove', updateGlow);
     }
 })();
 /* --- ETKİLEŞİM PAKETİ SONU --- */
+
+/* ============================================
+   EMAILJS İLETİŞİM FORMU YÖNETİMİ
+   ============================================ */
+(function() {
+    // ⚠️ ÖNEMLI: Aşağıdaki 3 değeri EmailJS panelinden kopyalayın
+    // 1. Public Key: https://dashboard.emailjs.com/admin/account
+    // 2. Service ID: https://dashboard.emailjs.com/admin/services
+    // 3. Template ID: https://dashboard.emailjs.com/admin/templates
+    
+    const PUBLIC_KEY = "BURAYA_SENIN_PUBLIC_KEY"; // Örn: "user_xxxxxxxxxxxxx"
+    const SERVICE_ID = "BURAYA_SENIN_SERVICE_ID"; // Örn: "service_xxxxx"
+    const TEMPLATE_ID = "BURAYA_SENIN_TEMPLATE_ID"; // Örn: "template_xxxxx"
+
+    // EmailJS Başlatma
+    if (PUBLIC_KEY !== "BURAYA_SENIN_PUBLIC_KEY") {
+        emailjs.init(PUBLIC_KEY);
+    }
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Eğer bilgiler henüz girilmemişse uyar
+            if (PUBLIC_KEY === "BURAYA_SENIN_PUBLIC_KEY" || 
+                SERVICE_ID === "BURAYA_SENIN_SERVICE_ID" || 
+                TEMPLATE_ID === "BURAYA_SENIN_TEMPLATE_ID") {
+                alert('❌ Lütfen app.js dosyasında EmailJS bilgilerinizi (Public Key, Service ID, Template ID) girin.');
+                return;
+            }
+            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Gönderiliyor durumu
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i>Gönderiliyor...';
+
+            // Form verilerini hazırla
+            const formData = {
+                user_name: contactForm.querySelector('input[name="user_name"]').value,
+                user_email: contactForm.querySelector('input[name="user_email"]').value,
+                message: contactForm.querySelector('textarea[name="message"]').value
+            };
+
+            // EmailJS'e gönder
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, formData)
+                .then(() => {
+                    alert('✅ Mesajınız başarıyla gönderildi! Teşekkür ederiz.');
+                    contactForm.reset();
+                }, (error) => {
+                    console.error('EmailJS Hatası:', error);
+                    alert('❌ Mesaj gönderilirken bir hata oluştu.\n\nHata: ' + (error.text || JSON.stringify(error)));
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                });
+        });
+    }
+})();
