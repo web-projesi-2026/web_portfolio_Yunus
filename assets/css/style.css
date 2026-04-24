@@ -965,4 +965,66 @@ body.menu-open {
     .parallax-section { background-attachment: scroll; height: 350px; }
 }
 @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+/* MODERN HERO TASARIMI */
+.modern-hero {
+    height: 60vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(45deg, #0f0f0f, #1a1a1a);
+    overflow: hidden;
+}
 
+.parallax-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+}
+
+.hero-title {
+    font-size: 4rem !important;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.hero-divider {
+    width: 80px;
+    height: 4px;
+    background: #e63946;
+    margin: 1.5rem auto;
+    border-radius: 2px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem !important;
+    opacity: 0.9;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.hero-badges {
+    margin-top: 2rem;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.badge {
+    padding: 5px 15px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: #888;
+    transition: 0.3s;
+}
+
+.badge:hover {
+    background: #e63946;
+    color: white;
+    border-color: #e63946;
+}
+
+.highlight { color: #e63946; }
