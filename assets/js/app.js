@@ -40,7 +40,7 @@ if (hamburger) {
         hamburger.classList.toggle('active');
         document.body.classList.toggle('menu-open');
         
-        // Hamburger animasyonu (CSS ile desteklenecek)
+        // Hamburger animasyonu
         const spans = hamburger.querySelectorAll('span');
         if (hamburger.classList.contains('active')) {
             spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -128,27 +128,21 @@ const updateGlow = (e) => {
         card.style.setProperty('--mouse-y', `${y}px`);
     });
 };
-// Fare hareketini tüm sayfa genelinde dinle
 document.addEventListener('mousemove', updateGlow);
-/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ (KESİN ÇÖZÜM) --- */
+
+/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ --- */
 (function() {
-    // 1. PRELOADER FONKSİYONU
     const preloader = document.getElementById('preloader');
     const hidePreloader = () => {
         if (preloader) {
             preloader.style.opacity = '0';
             preloader.style.visibility = 'hidden';
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
+            setTimeout(() => { preloader.style.display = 'none'; }, 500);
         }
     };
-
-    // Sayfa yüklendiğinde veya en geç 1 saniye sonra kapat
     window.addEventListener('load', hidePreloader);
     setTimeout(hidePreloader, 1000); 
 
-    // 2. LIGHTBOX FONKSİYONU
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const triggers = document.querySelectorAll('.lightbox-trigger');
@@ -163,91 +157,56 @@ document.addEventListener('mousemove', updateGlow);
                 document.body.style.overflow = 'hidden';
             });
         });
-
         const closeBtn = document.querySelector('.close-button');
         const closeLightbox = () => {
             lightbox.classList.remove('active');
             document.body.style.overflow = 'auto';
         };
-
         closeBtn?.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
     }
-
-    // 3. PARALLAX FONKSİYONU
-    const parallaxSections = document.querySelectorAll('.parallax-section');
-    if (parallaxSections.length > 0 && window.innerWidth > 1024) {
-        window.addEventListener('scroll', () => {
-            let scrollVal = window.pageYOffset;
-            parallaxSections.forEach(section => {
-                window.requestAnimationFrame(() => {
-                    section.style.backgroundPositionY = (scrollVal * 0.4) + 'px';
-                });
-            });
-        }, { passive: true });
-    }
 })();
-/* --- ETKİLEŞİM PAKETİ SONU --- */
 
 /* ============================================
-   EMAILJS İLETİŞİM FORMU YÖNETİMİ
+   FORMSPREE İLETİŞİM FORMU YÖNETİMİ
    ============================================ */
-(function() {
-    // ⚠️ ÖNEMLI: Aşağıdaki 3 değeri EmailJS panelinden kopyalayın
-    // 1. Public Key: https://dashboard.emailjs.com/admin/account
-    // 2. Service ID: https://dashboard.emailjs.com/admin/services
-    // 3. Template ID: https://dashboard.emailjs.com/admin/templates
-    
-    const PUBLIC_KEY = "BURAYA_SENIN_PUBLIC_KEY"; // Örn: "user_xxxxxxxxxxxxx"
-    const SERVICE_ID = "BURAYA_SENIN_SERVICE_ID"; // Örn: "service_xxxxx"
-    const TEMPLATE_ID = "BURAYA_SENIN_TEMPLATE_ID"; // Örn: "template_xxxxx"
+const contactForm = document.getElementById('contact-form');
 
-    // EmailJS Başlatma
-    if (PUBLIC_KEY !== "BURAYA_SENIN_PUBLIC_KEY") {
-        emailjs.init(PUBLIC_KEY);
-    }
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Sayfa yenilenmesini engelle
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
 
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            // Eğer bilgiler henüz girilmemişse uyar
-            if (PUBLIC_KEY === "BURAYA_SENIN_PUBLIC_KEY" || 
-                SERVICE_ID === "BURAYA_SENIN_SERVICE_ID" || 
-                TEMPLATE_ID === "BURAYA_SENIN_TEMPLATE_ID") {
-                alert('❌ Lütfen app.js dosyasında EmailJS bilgilerinizi (Public Key, Service ID, Template ID) girin.');
-                return;
+        // Gönderiliyor durumu
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i>Gönderiliyor...';
+
+        const data = new FormData(event.target);
+        
+        try {
+            const response = await fetch(event.target.action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                alert('✅ Mesajınız başarıyla iletildi! En kısa sürede dönüş yapacağım.');
+                contactForm.reset();
+            } else {
+                const result = await response.json();
+                alert('❌ Hata: Mesaj iletilemedi. Lütfen tüm alanları doğru doldurduğunuzdan emin olun.');
             }
-            
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            
-            // Gönderiliyor durumu
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i>Gönderiliyor...';
-
-            // Form verilerini hazırla
-            const formData = {
-                user_name: contactForm.querySelector('input[name="user_name"]').value,
-                user_email: contactForm.querySelector('input[name="user_email"]').value,
-                message: contactForm.querySelector('textarea[name="message"]').value
-            };
-
-            // EmailJS'e gönder
-            emailjs.send(SERVICE_ID, TEMPLATE_ID, formData)
-                .then(() => {
-                    alert('✅ Mesajınız başarıyla gönderildi! Teşekkür ederiz.');
-                    contactForm.reset();
-                }, (error) => {
-                    console.error('EmailJS Hatası:', error);
-                    alert('❌ Mesaj gönderilirken bir hata oluştu.\n\nHata: ' + (error.text || JSON.stringify(error)));
-                })
-                .finally(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                });
-        });
-    }
-})();
+        } catch (error) {
+            alert('❌ Hata: Bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        }
+    });
+}
