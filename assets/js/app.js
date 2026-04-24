@@ -169,41 +169,55 @@ document.addEventListener('mousemove', updateGlow);
 })();
 
 /* ============================================
-   FORMSPREE İLETİŞİM FORMU YÖNETİMİ
+   MODERN FORMSPREE YÖNETİMİ & BİLDİRİMLER
    ============================================ */
 const contactForm = document.getElementById('contact-form');
 
+// Şık Bildirim Fonksiyonu (Toast)
+const showNotification = (message, type = 'success') => {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed; top: 20px; right: 20px; padding: 15px 25px; 
+        background: ${type === 'success' ? '#2ecc71' : '#e63946'};
+        color: white; border-radius: 10px; z-index: 9999;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-family: sans-serif;
+        transform: translateX(120%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex; align-items: center; gap: 10px; font-weight: 500;
+    `;
+    toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => toast.style.transform = 'translateX(0)', 100);
+    setTimeout(() => {
+        toast.style.transform = 'translateX(120%)';
+        setTimeout(() => toast.remove(), 500);
+    }, 4000);
+};
+
 if (contactForm) {
     contactForm.addEventListener('submit', async function(event) {
-        event.preventDefault(); // Sayfa yenilenmesini engelle
-        
+        event.preventDefault();
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.innerHTML;
 
-        // Gönderiliyor durumu
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i>Gönderiliyor...';
+        submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Gönderiliyor...';
 
-        const data = new FormData(event.target);
-        
         try {
             const response = await fetch(event.target.action, {
                 method: 'POST',
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                body: new FormData(event.target),
+                headers: { 'Accept': 'application/json' }
             });
 
             if (response.ok) {
-                alert('✅ Mesajınız başarıyla iletildi! En kısa sürede dönüş yapacağım.');
+                showNotification('Mesajınız başarıyla iletildi! Teşekkürler.');
                 contactForm.reset();
             } else {
-                const result = await response.json();
-                alert('❌ Hata: Mesaj iletilemedi. Lütfen tüm alanları doğru doldurduğunuzdan emin olun.');
+                showNotification('Bir hata oluştu, lütfen tekrar deneyin.', 'error');
             }
         } catch (error) {
-            alert('❌ Hata: Bir sorun oluştu. Lütfen internet bağlantınızı kontrol edin.');
+            showNotification('Bağlantı hatası! Lütfen internetinizi kontrol edin.', 'error');
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = originalBtnText;
