@@ -1,6 +1,7 @@
 /**
- * Favorileme Sistemi
- * Projeleri favorilere ekleme, çıkarma ve yönetme işlevleri
+ * Favorileme Sistemi (Güncellenmiş)
+ * - Sayaç hatası düzeltildi
+ * - Modern notification sistemi eklendi
  */
 
 class FavoritesManager {
@@ -8,6 +9,7 @@ class FavoritesManager {
         this.storageKey = 'projectFavorites';
         this.favorites = this.loadFavorites();
         this.init();
+        this.createNotificationContainer();
     }
 
     /**
@@ -41,8 +43,10 @@ class FavoritesManager {
         const index = this.favorites.indexOf(projectId);
         if (index > -1) {
             this.favorites.splice(index, 1);
+            this.showNotification('Projeden Çıkarıldı', 'Proje favorilerden çıkarıldı.', 'remove');
         } else {
             this.favorites.push(projectId);
+            this.showNotification('Favorilere Eklendi', 'Proje favorilere eklendi.', 'add');
         }
         this.saveFavorites();
         this.updateUI();
@@ -62,6 +66,127 @@ class FavoritesManager {
         this.favorites = [];
         this.saveFavorites();
         this.updateUI();
+        this.showNotification('Temizlendi', 'Tüm favoriler silindi.', 'clear');
+    }
+
+    /**
+     * Notification container oluştur
+     */
+    createNotificationContainer() {
+        if (!document.getElementById('notification-container')) {
+            const container = document.createElement('div');
+            container.id = 'notification-container';
+            container.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10000;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                pointer-events: none;
+            `;
+            document.body.appendChild(container);
+        }
+    }
+
+    /**
+     * Modern notification göster
+     */
+    showNotification(title, message, type = 'info') {
+        const container = document.getElementById('notification-container');
+        
+        // İkon seç
+        let icon = '✓';
+        let bgColor = '#e63946';
+        
+        if (type === 'add') {
+            icon = '❤️';
+            bgColor = '#e63946';
+        } else if (type === 'remove') {
+            icon = '✕';
+            bgColor = '#666666';
+        } else if (type === 'clear') {
+            icon = '🗑️';
+            bgColor = '#e63946';
+        }
+
+        // Notification element oluştur
+        const notification = document.createElement('div');
+        notification.className = 'notification-item';
+        notification.style.cssText = `
+            background: linear-gradient(135deg, ${bgColor}, ${this.adjustColor(bgColor, -20)});
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 300px;
+            animation: slideInRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        `;
+
+        notification.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 1.5rem; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: rgba(255, 255, 255, 0.2); border-radius: 50%;">
+                    ${icon}
+                </span>
+                <div style="flex: 1;">
+                    <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 4px;">${title}</div>
+                    <div style="font-size: 0.85rem; opacity: 0.9;">${message}</div>
+                </div>
+                <button style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; padding: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                    ✕
+                </button>
+            </div>
+        `;
+
+        // Kapatma butonu
+        const closeBtn = notification.querySelector('button');
+        closeBtn.addEventListener('click', () => {
+            notification.style.animation = 'slideOutRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            setTimeout(() => notification.remove(), 400);
+        });
+
+        // Hover efekti
+        notification.addEventListener('mouseenter', () => {
+            notification.style.transform = 'translateX(-5px)';
+            notification.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.4)';
+        });
+
+        notification.addEventListener('mouseleave', () => {
+            notification.style.transform = 'translateX(0)';
+            notification.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
+        });
+
+        container.appendChild(notification);
+
+        // 4 saniye sonra otomatik kapat
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.style.animation = 'slideOutRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                setTimeout(() => notification.remove(), 400);
+            }
+        }, 4000);
+    }
+
+    /**
+     * Rengi ayarla (daha koyu/açık yap)
+     */
+    adjustColor(color, percent) {
+        const num = parseInt(color.replace("#", ""), 16);
+        const amt = Math.round(2.55 * percent);
+        const R = (num >> 16) + amt;
+        const G = (num >> 8 & 0x00FF) + amt;
+        const B = (num & 0x0000FF) + amt;
+        return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+            (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+            (B < 255 ? B < 1 ? 0 : B : 255))
+            .toString(16).slice(1);
     }
 
     /**
@@ -71,6 +196,49 @@ class FavoritesManager {
         this.setupFavoriteButtons();
         this.setupClearButton();
         this.updateUI();
+        this.addAnimationStyles();
+    }
+
+    /**
+     * Animasyon stillerini ekle
+     */
+    addAnimationStyles() {
+        if (!document.getElementById('notification-styles')) {
+            const style = document.createElement('style');
+            style.id = 'notification-styles';
+            style.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        opacity: 0;
+                        transform: translateX(400px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                @keyframes slideOutRight {
+                    from {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                    to {
+                        opacity: 0;
+                        transform: translateX(400px);
+                    }
+                }
+
+                .notification-item {
+                    user-select: none;
+                }
+
+                .notification-item button:hover {
+                    opacity: 1 !important;
+                }
+            `;
+            document.head.appendChild(style);
+        }
     }
 
     /**
@@ -142,7 +310,7 @@ class FavoritesManager {
     }
 
     /**
-     * Favoriler bölümünü render et
+     * Favoriler bölümünü render et (SAYAÇ HATASI DÜZELTİLDİ)
      */
     renderFavoritesSection() {
         const container = document.getElementById('favorites-container');
@@ -150,10 +318,11 @@ class FavoritesManager {
         const clearBtn = document.getElementById('clear-favorites-btn');
         const projectCards = document.querySelectorAll('.project-card[data-project-id]');
 
-        // Sayacı güncelle
-        counter.textContent = this.favorites.length;
+        // Sayacı güncelle - HATA DÜZELTMESİ
+        const favoriteCount = this.favorites.length;
+        counter.textContent = favoriteCount;
 
-        if (this.favorites.length === 0) {
+        if (favoriteCount === 0) {
             // Boş durumu göster
             container.innerHTML = `
                 <div class="favorites-empty">
