@@ -9,6 +9,120 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Favorileme Özelliği Stilleri */
+        .project-card {
+            position: relative;
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(230, 57, 70, 0.15);
+            border: 2px solid rgba(230, 57, 70, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #e63946;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .favorite-btn:hover {
+            background: rgba(230, 57, 70, 0.25);
+            border-color: #e63946;
+            transform: scale(1.1);
+        }
+
+        .favorite-btn.active {
+            background: #e63946;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.6);
+        }
+
+        .favorites-section {
+            margin-top: 100px;
+            padding-top: 60px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .favorites-header {
+            margin-bottom: 50px;
+        }
+
+        .favorites-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .favorites-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+
+        .favorites-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .favorites-empty i {
+            font-size: 3rem;
+            color: #e63946;
+            margin-bottom: 20px;
+            display: block;
+            opacity: 0.5;
+        }
+
+        .favorites-empty p {
+            font-size: 1.1rem;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .clear-favorites-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(230, 57, 70, 0.1);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+            color: #e63946;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .clear-favorites-btn:hover {
+            background: rgba(230, 57, 70, 0.2);
+            border-color: #e63946;
+        }
+
+        .favorites-counter {
+            display: inline-block;
+            background: #e63946;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
 <!-- 1. PRELOADER: Tüm sayfaların en üstüne (<body> etiketinden hemen sonra) yapıştırın -->
@@ -74,49 +188,89 @@
             <div class="projects-grid fade-in-up delay-1">
                 
                 <!-- Proje 1 -->
-                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card glow-card">
-                    <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
-                    <h3>E-Ticaret Sitesi</h3>
-                    <p>PHP ve MySQL kullanılarak geliştirilmiş, dinamik sepet sistemi ve yönetici paneli bulunan kapsamlı bir e-ticaret platformu.</p>
-                    <div class="project-link-hint">
-                        <span>GitHub'da Görüntüle</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </a>
+                <div class="project-card glow-card" data-project-id="1">
+                    <button class="favorite-btn" data-project-id="1" title="Favorilere Ekle">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-link">
+                        <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <h3>E-Ticaret Sitesi</h3>
+                        <p>PHP ve MySQL kullanılarak geliştirilmiş, dinamik sepet sistemi ve yönetici paneli bulunan kapsamlı bir e-ticaret platformu.</p>
+                        <div class="project-link-hint">
+                            <span>GitHub'da Görüntüle</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- Proje 2 -->
-                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card glow-card">
-                    <div class="project-icon"><i class="fas fa-desktop"></i></div>
-                    <h3>Stok Takip Sistemi</h3>
-                    <p>C# ve SQL Server tabanlı, işletmelerin ürün stoklarını, satışlarını ve raporlarını yönetebileceği masaüstü uygulaması.</p>
-                    <div class="project-link-hint">
-                        <span>GitHub'da Görüntüle</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </a>
+                <div class="project-card glow-card" data-project-id="2">
+                    <button class="favorite-btn" data-project-id="2" title="Favorilere Ekle">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-link">
+                        <div class="project-icon"><i class="fas fa-desktop"></i></div>
+                        <h3>Stok Takip Sistemi</h3>
+                        <p>C# ve SQL Server tabanlı, işletmelerin ürün stoklarını, satışlarını ve raporlarını yönetebileceği masaüstü uygulaması.</p>
+                        <div class="project-link-hint">
+                            <span>GitHub'da Görüntüle</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- Proje 3 -->
-                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card glow-card">
-                    <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <h3>Hava Durumu Uygulaması</h3>
-                    <p>OpenWeather API kullanarak anlık hava durumu verilerini modern bir arayüzle sunan JavaScript tabanlı web uygulaması.</p>
-                    <div class="project-link-hint">
-                        <span>GitHub'da Görüntüle</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </a>
+                <div class="project-card glow-card" data-project-id="3">
+                    <button class="favorite-btn" data-project-id="3" title="Favorilere Ekle">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-link">
+                        <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>Hava Durumu Uygulaması</h3>
+                        <p>OpenWeather API kullanarak anlık hava durumu verilerini modern bir arayüzle sunan JavaScript tabanlı web uygulaması.</p>
+                        <div class="project-link-hint">
+                            <span>GitHub'da Görüntüle</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
 
                 <!-- Proje 4 -->
-                <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-card glow-card">
-                    <div class="project-icon"><i class="fas fa-tasks"></i></div>
-                    <h3>Görev Yönetim Aracı</h3>
-                    <p>Kullanıcıların günlük işlerini planlayabileceği, sürükle-bırak özellikli ve yerel depolama destekli modern bir ajanda.</p>
-                    <div class="project-link-hint">
-                        <span>GitHub'da Görüntüle</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </a>
+                <div class="project-card glow-card" data-project-id="4">
+                    <button class="favorite-btn" data-project-id="4" title="Favorilere Ekle">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-link">
+                        <div class="project-icon"><i class="fas fa-tasks"></i></div>
+                        <h3>Görev Yönetim Aracı</h3>
+                        <p>Kullanıcıların günlük işlerini planlayabileceği, sürükle-bırak özellikli ve yerel depolama destekli modern bir ajanda.</p>
+                        <div class="project-link-hint">
+                            <span>GitHub'da Görüntüle</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
 
+            </div>
+
+            <!-- FAVORİLER BÖLÜMÜ -->
+            <div class="favorites-section">
+                <div class="favorites-header">
+                    <h2>Favori Projelerim <span class="favorites-counter" id="favorites-count">0</span></h2>
+                    <p>Beğendiğiniz projeleri buradan hızlı bir şekilde görüntüleyebilirsiniz.</p>
+                </div>
+
+                <div id="favorites-container">
+                    <div class="favorites-empty">
+                        <i class="far fa-heart"></i>
+                        <p>Henüz favorilere proje eklemediniz. Bir projeyi favorilere eklemek için ♡ düğmesine tıklayın.</p>
+                    </div>
+                </div>
+
+                <button class="clear-favorites-btn" id="clear-favorites-btn" style="display: none;">
+                    <i class="fas fa-trash"></i>
+                    Tüm Favorileri Temizle
+                </button>
             </div>
 
         </div>
@@ -146,5 +300,146 @@
     </footer>
 
     <script src="../assets/js/app.js"></script>
+    
+    <!-- Favorileme Sistemi Script -->
+    <script>
+        // Favorileme Sistemi
+        class FavoritesManager {
+            constructor() {
+                this.storageKey = 'projectFavorites';
+                this.favorites = this.loadFavorites();
+                this.init();
+            }
+
+            loadFavorites() {
+                const stored = localStorage.getItem(this.storageKey);
+                return stored ? JSON.parse(stored) : [];
+            }
+
+            saveFavorites() {
+                localStorage.setItem(this.storageKey, JSON.stringify(this.favorites));
+            }
+
+            toggleFavorite(projectId) {
+                const index = this.favorites.indexOf(projectId);
+                if (index > -1) {
+                    this.favorites.splice(index, 1);
+                } else {
+                    this.favorites.push(projectId);
+                }
+                this.saveFavorites();
+                this.updateUI();
+            }
+
+            isFavorite(projectId) {
+                return this.favorites.includes(projectId);
+            }
+
+            init() {
+                // Favori butonlarını bağla
+                const favoriteButtons = document.querySelectorAll('.favorite-btn');
+                favoriteButtons.forEach(btn => {
+                    const projectId = parseInt(btn.getAttribute('data-project-id'));
+                    
+                    // Başlangıç durumunu ayarla
+                    if (this.isFavorite(projectId)) {
+                        btn.classList.add('active');
+                        btn.innerHTML = '<i class="fas fa-heart"></i>';
+                        btn.title = 'Favorilerden Çıkar';
+                    }
+
+                    // Tıklama olayını bağla
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.toggleFavorite(projectId);
+                    });
+                });
+
+                // Temizle butonunu bağla
+                const clearBtn = document.getElementById('clear-favorites-btn');
+                if (clearBtn) {
+                    clearBtn.addEventListener('click', () => {
+                        if (confirm('Tüm favorileri silmek istediğinize emin misiniz?')) {
+                            this.favorites = [];
+                            this.saveFavorites();
+                            this.updateUI();
+                        }
+                    });
+                }
+
+                this.updateUI();
+            }
+
+            updateUI() {
+                this.updateFavoriteButtons();
+                this.renderFavoritesSection();
+            }
+
+            updateFavoriteButtons() {
+                const favoriteButtons = document.querySelectorAll('.favorite-btn');
+                favoriteButtons.forEach(btn => {
+                    const projectId = parseInt(btn.getAttribute('data-project-id'));
+                    if (this.isFavorite(projectId)) {
+                        btn.classList.add('active');
+                        btn.innerHTML = '<i class="fas fa-heart"></i>';
+                        btn.title = 'Favorilerden Çıkar';
+                    } else {
+                        btn.classList.remove('active');
+                        btn.innerHTML = '<i class="far fa-heart"></i>';
+                        btn.title = 'Favorilere Ekle';
+                    }
+                });
+            }
+
+            renderFavoritesSection() {
+                const container = document.getElementById('favorites-container');
+                const counter = document.getElementById('favorites-count');
+                const clearBtn = document.getElementById('clear-favorites-btn');
+                const projectCards = document.querySelectorAll('.project-card');
+
+                counter.textContent = this.favorites.length;
+
+                if (this.favorites.length === 0) {
+                    container.innerHTML = `
+                        <div class="favorites-empty">
+                            <i class="far fa-heart"></i>
+                            <p>Henüz favorilere proje eklemediniz. Bir projeyi favorilere eklemek için ♡ düğmesine tıklayın.</p>
+                        </div>
+                    `;
+                    if (clearBtn) clearBtn.style.display = 'none';
+                } else {
+                    const favoriteCards = Array.from(projectCards).filter(card => {
+                        const projectId = parseInt(card.getAttribute('data-project-id'));
+                        return this.favorites.includes(projectId);
+                    });
+
+                    const favoritesHTML = favoriteCards.map(card => {
+                        return card.outerHTML;
+                    }).join('');
+
+                    container.innerHTML = `<div class="favorites-grid">${favoritesHTML}</div>`;
+                    
+                    // Yeniden bağla
+                    const newFavBtns = container.querySelectorAll('.favorite-btn');
+                    newFavBtns.forEach(btn => {
+                        const projectId = parseInt(btn.getAttribute('data-project-id'));
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.toggleFavorite(projectId);
+                        });
+                    });
+
+                    if (clearBtn) clearBtn.style.display = 'inline-flex';
+                }
+            }
+        }
+
+        // Sayfa yüklendiğinde başlat
+        document.addEventListener('DOMContentLoaded', () => {
+            new FavoritesManager();
+        });
+    </script>
 </body>
 </html>
