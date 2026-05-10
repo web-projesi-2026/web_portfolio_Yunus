@@ -901,3 +901,307 @@ body.menu-open {
         to { opacity: 1; transform: translateY(0); }
     }
 }
+/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ (GÜNCELLENMİŞ CSS) --- */
+
+/* 1. Preloader Stilleri */
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 9999; background-color: #0a0a0a;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 1; visibility: visible;
+}
+
+/* Preloader Gizlendiğinde */
+#preloader.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.spinner {
+    border: 4px solid rgba(230, 57, 70, 0.1);
+    border-top: 4px solid #e63946; /* Sitenizin ana kırmızı rengi */
+    border-radius: 50%; width: 50px; height: 50px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* 2. Lightbox Stilleri */
+.lightbox {
+    display: none; position: fixed; z-index: 10000;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    justify-content: center; align-items: center;
+}
+.lightbox.active { display: flex !important; }
+.lightbox-content { 
+    max-width: 90%; max-height: 85%; border-radius: 8px; 
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+.close-button { 
+    position: absolute; top: 20px; right: 30px; color: #fff; 
+    font-size: 50px; cursor: pointer; transition: 0.3s;
+}
+.close-button:hover { color: #e63946; }
+
+/* 3. Paralaks Stilleri */
+.parallax-section {
+    height: 450px; background-attachment: fixed;
+    background-position: center; background-repeat: no-repeat; background-size: cover;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+}
+.parallax-section::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.65); z-index: 1;
+}
+.parallax-container { position: relative; z-index: 2; color: white; text-align: center; padding: 20px; }
+
+/* --- MOBİL UYUMLULUK --- */
+@media (max-width: 768px) {
+    .lightbox-content { max-width: 95%; max-height: 75%; }
+    .close-button { top: 10px; right: 20px; font-size: 40px; padding: 10px; }
+    .parallax-section { background-attachment: scroll; height: 350px; }
+}
+@keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+/* MODERN HERO TASARIMI */
+.modern-hero {
+    height: 60vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(45deg, #0f0f0f, #1a1a1a);
+    overflow: hidden;
+}
+
+.parallax-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+}
+
+.hero-title {
+    font-size: 4rem !important;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.hero-divider {
+    width: 80px;
+    height: 4px;
+    background: #e63946;
+    margin: 1.5rem auto;
+    border-radius: 2px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem !important;
+    opacity: 0.9;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.hero-badges {
+    margin-top: 2rem;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.badge {
+    padding: 5px 15px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: #888;
+    transition: 0.3s;
+}
+
+.badge:hover {
+    background: #e63946;
+    color: white;
+    border-color: #e63946;
+}
+
+.highlight { color: #e63946; }
+
+/* ============================================
+   MODERN VIDEO TARZINDA KAYAN ANIMASYONLAR
+   ============================================ */
+
+.parallax-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title-animated {
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #e63946, #ff6b6b, #e63946);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 6s ease infinite;
+    text-transform: uppercase;
+    text-shadow: 0 0 30px rgba(230, 57, 70, 0.3);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.subtitle-animated {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px 20px;
+    border-radius: 50px;
+    background: rgba(230, 57, 70, 0.1);
+    border: 2px solid rgba(230, 57, 70, 0.3);
+}
+
+.subtitle-animated::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Kayan Parçacıklar */
+.floating-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #e63946;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float-up 20s infinite linear;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 6s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 8s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 10s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 12s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 14s; }
+.particle:nth-child(9) { left: 90%; animation-delay: 16s; }
+
+@keyframes float-up {
+    0% {
+        bottom: -10px;
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        bottom: 100vh;
+        opacity: 0;
+        transform: translateX(100px);
+    }
+}
+
+/* Dinamik Arka Plan */
+.parallax-section {
+    position: relative;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+    overflow: hidden;
+}
+
+.parallax-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 20% 50%, rgba(230, 57, 70, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(230, 57, 70, 0.05) 0%, transparent 50%);
+    animation: bgShift 15s ease infinite;
+    z-index: 1;
+}
+
+@keyframes bgShift {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-50px, -50px);
+    }
+}
+
+.parallax-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title-animated {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+    }
+    
+    .subtitle-animated {
+        font-size: 1.3rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title-animated {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle-animated {
+        font-size: 1rem;
+        padding: 6px 12px;
+    }
+}

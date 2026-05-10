@@ -40,7 +40,7 @@ if (hamburger) {
         hamburger.classList.toggle('active');
         document.body.classList.toggle('menu-open');
         
-        // Hamburger animasyonu (CSS ile desteklenecek)
+        // Hamburger animasyonu
         const spans = hamburger.querySelectorAll('span');
         if (hamburger.classList.contains('active')) {
             spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
@@ -128,6 +128,124 @@ const updateGlow = (e) => {
         card.style.setProperty('--mouse-y', `${y}px`);
     });
 };
-
-// Fare hareketini tüm sayfa genelinde dinle
 document.addEventListener('mousemove', updateGlow);
+
+/* --- YUNUS BARIŞ PORTFOLYO ETKİLEŞİM PAKETİ --- */
+(function() {
+    const preloader = document.getElementById('preloader');
+    const hidePreloader = () => {
+        if (preloader) {
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+            setTimeout(() => { preloader.style.display = 'none'; }, 500);
+        }
+    };
+    window.addEventListener('load', hidePreloader);
+    setTimeout(hidePreloader, 1000); 
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const triggers = document.querySelectorAll('.lightbox-trigger');
+
+    if (lightbox && triggers.length > 0) {
+        triggers.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        const closeBtn = document.querySelector('.close-button');
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+        closeBtn?.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+    }
+})();
+
+/* ============================================
+   MODERN FORMSPREE YÖNETİMİ & BİLDİRİMLER
+   ============================================ */
+const contactForm = document.getElementById('contact-form');
+
+// Şık Bildirim Fonksiyonu (Toast)
+const showNotification = (message, type = 'success') => {
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position: fixed; top: 20px; right: 20px; padding: 15px 25px; 
+        background: ${type === 'success' ? '#2ecc71' : '#e63946'};
+        color: white; border-radius: 10px; z-index: 9999;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-family: sans-serif;
+        transform: translateX(120%); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex; align-items: center; gap: 10px; font-weight: 500;
+    `;
+    toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => toast.style.transform = 'translateX(0)', 100);
+    setTimeout(() => {
+        toast.style.transform = 'translateX(120%)';
+        setTimeout(() => toast.remove(), 500);
+    }, 4000);
+};
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Gönderiliyor...';
+
+        try {
+            const response = await fetch(event.target.action, {
+                method: 'POST',
+                body: new FormData(event.target),
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                showNotification('Mesajınız başarıyla iletildi! Teşekkürler.');
+                contactForm.reset();
+            } else {
+                showNotification('Bir hata oluştu, lütfen tekrar deneyin.', 'error');
+            }
+        } catch (error) {
+            showNotification('Bağlantı hatası! Lütfen internetinizi kontrol edin.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        }
+    });
+}
+
+/* ============================================
+   KAYAN PARÇACIKLAR VE ANIMASYONLAR
+   ============================================ */
+const initializeParticles = () => {
+    const particlesContainers = document.querySelectorAll('.floating-particles');
+    
+    particlesContainers.forEach(container => {
+        // Eğer zaten parçacıklar varsa, yeniden oluşturma
+        if (container.children.length > 0) return;
+        
+        for (let i = 0; i < 9; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            container.appendChild(particle);
+        }
+    });
+};
+
+// Sayfa yüklendiğinde parçacıkları başlat
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeParticles);
+} else {
+    initializeParticles();
+}

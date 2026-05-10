@@ -47,6 +47,28 @@
     </style>
 </head>
 <body>
+    <!-- 1. PRELOADER: Tüm sayfaların en üstüne (<body> etiketinden hemen sonra) yapıştırın -->
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
+
+<!-- 2. LIGHTBOX: Sadece galeri (gallery.html) sayfasının en altına (</body> öncesine) yapıştırın -->
+<div id="lightbox" class="lightbox">
+    <span class="close-button">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="">
+</div>
+
+<!-- 3. PARALLAX: İstediğiniz sayfada (örneğin ana sayfa) bir bölüm olarak kullanın -->
+<section class="parallax-section">
+    <!-- Kayan Parçacıklar -->
+    <div class="floating-particles"></div>
+    
+    <div class="parallax-container">
+        <h2 class="hero-title-animated">Yunus Barış</h2>
+        <p class="subtitle-animated">Geleceği kodluyoruz.</p>
+    </div>
+</section>
+
     <div class="cursor" id="cursor"></div>
     <div class="cursor-trail" id="cursorTrail"></div>
 
