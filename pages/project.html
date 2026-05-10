@@ -944,7 +944,7 @@
                 const container = document.getElementById('favorites-container');
                 const counter = document.getElementById('favorites-count');
                 const clearBtn = document.getElementById('clear-favorites-btn');
-                const projectCards = document.querySelectorAll('.project-card[data-project-id]');
+                const projectCards = document.querySelectorAll('.projects-grid .project-card[data-project-id]');
 
                 counter.textContent = this.favorites.length;
 
@@ -963,7 +963,9 @@
                     });
 
                     const favoritesHTML = favoriteCards.map(card => {
-                        return card.outerHTML;
+                        // Klonu oluştur ve event listener'ları temizle
+                        const clone = card.cloneNode(true);
+                        return clone.outerHTML;
                     }).join('');
 
                     container.innerHTML = `<div class="favorites-grid">${favoritesHTML}</div>`;
