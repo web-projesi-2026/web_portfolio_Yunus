@@ -37,15 +37,12 @@
       <div class="favorite-summary"><i class="fas fa-heart"></i> Favoriler: <span id="favorite-count">0</span></div>
     </nav>
   </header>
-
   <main>
     <section class="page-header">
       <h1>Veri <span class="highlight">Odevim</span></h1>
       <p>Bu sayfada proje verileri JSON dosyasindan okunur, JavaScript ile kartlara donusturulur. Favoriler localStorage ve Firebase Realtime Database ile saklanir.</p>
     </section>
-
     <div id="projects-grid" class="projects-grid"><div class="status-message">Projeler yukleniyor...</div></div>
-
     <section class="favorites-section">
       <div class="section-title-row">
         <h2>Favori Projelerim</h2>
@@ -54,7 +51,6 @@
       <div id="favorites-container"><div class="empty-message">Henuz favorilere proje eklemediniz.</div></div>
     </section>
   </main>
-
   <div id="toast" class="toast"></div>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
