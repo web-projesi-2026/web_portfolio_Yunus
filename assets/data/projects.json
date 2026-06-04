@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "E-Ticaret Sitesi",
+    "description": "PHP ve MySQL kullanilarak gelistirilmis, dinamik sepet sistemi ve yonetici paneli bulunan kapsamli bir e-ticaret platformu.",
+    "icon": "fa-shopping-cart",
+    "link": "https://github.com/barisyunus29-blip",
+    "technologies": ["PHP", "MySQL", "JavaScript"]
+  },
+  {
+    "id": 2,
+    "title": "Stok Takip Sistemi",
+    "description": "C# ve SQL Server tabanli, isletmelerin urun stoklarini, satislarini ve raporlarini yonetebilecegi masaustu uygulamasi.",
+    "icon": "fa-desktop",
+    "link": "https://github.com/barisyunus29-blip",
+    "technologies": ["C#", "SQL Server", "Windows Forms"]
+  },
+  {
+    "id": 3,
+    "title": "Hava Durumu Uygulamasi",
+    "description": "OpenWeather API kullanarak anlik hava durumu verilerini modern bir arayuzle sunan JavaScript tabanli web uygulamasi.",
+    "icon": "fa-cloud-sun",
+    "link": "https://github.com/barisyunus29-blip",
+    "technologies": ["JavaScript", "API", "CSS"]
+  },
+  {
+    "id": 4,
+    "title": "Gorev Yonetim Araci",
+    "description": "Kullanicilarin gunluk islerini planlayabilecegi, tamamlanan gorevleri takip edebilecegi ve localStorage destekli modern bir ajanda.",
+    "icon": "fa-tasks",
+    "link": "https://github.com/barisyunus29-blip",
+    "technologies": ["JavaScript", "localStorage", "HTML"]
+  }
+]
