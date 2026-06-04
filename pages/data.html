@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yunus Baris | JSON ve localStorage Odev</title>
+  <title>Veri Odevim</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * {
@@ -18,17 +18,13 @@
       font-family: Arial, sans-serif;
     }
     header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(17, 17, 17, 0.92);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(14px);
+      background: #181818;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
     nav {
-      max-width: 1180px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 18px 22px;
+      padding: 18px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -36,7 +32,7 @@
     }
     .logo {
       color: #fff;
-      font-size: 1.25rem;
+      font-size: 22px;
       font-weight: 800;
       text-decoration: none;
     }
@@ -45,44 +41,47 @@
       color: #e63946;
     }
     .favorite-summary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       padding: 10px 16px;
-      border: 1px solid rgba(230, 57, 70, 0.35);
+      border: 1px solid rgba(230, 57, 70, 0.45);
       border-radius: 999px;
-      background: rgba(230, 57, 70, 0.12);
-      color: #fff;
+      background: rgba(230, 57, 70, 0.14);
       font-weight: 700;
     }
     main {
-      max-width: 1180px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 54px 22px 80px;
+      padding: 44px 20px 70px;
     }
     .page-header {
-      margin-bottom: 34px;
+      margin-bottom: 30px;
+    }
+    .page-header h1 {
+      font-size: clamp(34px, 7vw, 68px);
+      line-height: 1.05;
     }
     .page-header p {
-      max-width: 720px;
-      margin-top: 12px;
-      color: rgba(255, 255, 255, 0.68);
-      line-height: 1.7;
-    }
-    h1 {
-      font-size: clamp(2.2rem, 6vw, 4.6rem);
-      line-height: 1.05;
+      max-width: 760px;
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
     }
     .projects-grid,
     .favorites-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
     .project-card {
       position: relative;
-      min-height: 300px;
-      padding: 28px;
+      min-height: 285px;
+      padding: 26px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       background: #181818;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+    }
+    .favorite-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 42px;
