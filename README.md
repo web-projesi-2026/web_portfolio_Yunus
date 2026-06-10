@@ -1,65 +1,69 @@
-# Yunus Barış — Kişisel Portfolyo
-
-Saf HTML, CSS ve JavaScript ile geliştirilmiş, modern ve etkileşimli kişisel portfolyo sitesi.
-
-## Proje Yapısı
-
-```
+# Yunus Baris - Kisisel Portfolyo
+Saf HTML, CSS ve JavaScript ile gelistirilmis modern, responsive ve dinamik kisisel portfolyo projesi.
+Canli site: https://web-projesi-2026.github.io/web_portfolio_Yunus/
+## Proje Yapisi
+```text
 web_portfolio_Yunus/
-├── index.html              # Ana sayfa
-├── README.md               # Bu dosya
-├── pages/
-│   ├── about.html          # Hakkında sayfası
-│   ├── contact.html        # İletişim sayfası
-│   └── project.html        # Projeler sayfası (Bu dosya henüz boş, isteğe bağlı olarak doldurulabilir)
-└── assets/
-    ├── css/
-    │   └── style.css       # Ana stil dosyası
-    ├── img/                # Resimler ve diğer medya dosyaları
-    └── js/
-        └── app.js          # Ana JavaScript dosyası
+|-- index.html
+|-- README.md
+|-- assets/
+|   |-- css/
+|   |   `-- style.css
+|   |-- data/
+|   |   `-- projects.json
+|   |-- js/
+|   |   |-- app.js
+|   |   `-- favorites-system.js
+|   `-- favicon.svg
+`-- pages/
+    |-- about.html
+    |-- contact.html
+    |-- data.html
+    |-- education.html
+    |-- experience.html
+    |-- gallery.html
+    |-- project.html
+    `-- skills.html
 ```
-
-## Kullanılan Teknolojiler
-
-- **HTML5:** Web sayfasının yapısal iskeletini oluşturur.
-- **CSS3:** Modern tasarım ve stil için (CSS Variables, Flexbox, Grid).
-- **Vanilla JavaScript (ES6+):** Etkileşimli özellikler, animasyonlar ve dinamik içerik yönetimi için (IntersectionObserver, DOM API).
-- **Google Fonts:** `Playfair Display` ve `JetBrains Mono` fontları için.
-
+## Kullanilan Teknolojiler
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- JSON veri dosyasi
+- Firebase Realtime Database
+- localStorage
+- Font Awesome
+- Google Fonts
+## Odev Gereksinimleri
+### Kullanici Deneyimi Ozellikleri
+- `pages/data.html` sayfasinda proje arama kutusu bulunur.
+- Projeler kategoriye gore filtrelenebilir.
+- Projeler ada gore A-Z veya Z-A siralanabilir.
+- Proje favorileme sistemi ile kullanici kendi favori listesini olusturabilir.
+### API veya Dinamik Veri Kullanimi
+- Projeler `assets/data/projects.json` dosyasindan `fetch()` ile okunur.
+- Okunan JSON verileri JavaScript ile kart yapisinda listelenir.
+### Veritabani Islemleri
+Firebase Realtime Database kullanilarak favori proje verileri saklanir.
+- Veri ekleme: Favoriye eklenen proje Firebase'e kaydedilir.
+- Veri listeleme: Sayfa acilisinda kullanicinin favorileri Firebase'den okunur.
+- Veri silme: Tek favori veya tum favoriler Firebase ve localStorage uzerinden silinir.
+GitHub Pages PHP/MySQL calistirmadigi icin backend gereksinimi Firebase Realtime Database ile karsilanmistir.
+### Profesyonellestirme
+- Sayfa basliklari eklendi.
+- Tum HTML sayfalarina SVG favicon baglandi.
+- README proje yapisi, teknolojiler ve odev gereksinimleriyle guncellendi.
+- Sayfalar arasi navigasyon baglantilari duzenlendi.
+- Responsive tasarim korunarak veri sayfasina mobil uyumlu kontrol alani eklendi.
 ## Kurulum
-
-Projeyi yerel makinenizde çalıştırmak için herhangi bir özel kurulum gerekmez. Aşağıdaki adımları takip edebilirsiniz:
-
-1.  **Depoyu Klonlayın:**
-    ```bash
-    git clone https://github.com/web-projesi-2026/web_portfolio_Yunus.git
-    ```
-2.  **Proje Dizinine Gidin:**
-    ```bash
-    cd web_portfolio_Yunus
-    ```
-3.  **Tarayıcınızda Açın:** `index.html` dosyasını favori web tarayıcınızda açmanız yeterlidir.
-
-## Özellikler
-
-- **Tam Duyarlı Tasarım:** Masaüstü, tablet ve mobil cihazlarda sorunsuz ve optimize edilmiş bir kullanıcı deneyimi sunar.
-- **Özel İmleç:** Web sitesine benzersiz ve etkileşimli bir dokunuş katan özel tasarlanmış fare imleci.
-- **Animasyonlu Arka Plan:** JavaScript ile oluşturulan dinamik parçacık efektleri sayesinde ana sayfada göz alıcı bir arka plan animasyonu.
-- **Hamburger Menü:** Mobil cihazlarda kolay ve sezgisel gezinme sağlayan, modern hamburger menü uygulaması.
-- **Kaydırma Animasyonları (Scroll Reveal):** Sayfa aşağı kaydırıldıkça içeriklerin zarif bir şekilde görünmesini sağlayan `reveal-up` animasyonları.
-- **Sayıcı Animasyonları:** "Tamamlanan Proje" ve "Kahve Tüketimi" gibi istatistiklerin animasyonlu bir şekilde artarak gösterilmesi.
-- **Çok Adımlı İletişim Formu:** Kullanıcıların kolayca ve adım adım mesaj göndermesini sağlayan interaktif bir iletişim formu.
-- **Proje Kartı Parlama Efekti:** Fare imleci proje kartlarının üzerine geldiğinde oluşan dinamik ve görsel olarak çekici parlama efekti.
-- **Aktif Sayfa Vurgusu (Navigasyon):** Gezinme çubuğundaki aktif sayfanın görsel olarak vurgulanması.
-
-## Canlı Demolar
-
-Projenin canlı demosuna aşağıdaki adresten ulaşabilirsiniz: [https://web-projesi-2026.github.io/web_portfolio_Yunus/](https://web-projesi-2026.github.io/web_portfolio_Yunus/)
-
-## İletişim
-
-- **Yunus Barış**
-- **E-posta:** [baris.yunus@ogr.ahievran.edu.tr](mailto:baris.yunus@ogr.ahievran.edu.tr)
-- **LinkedIn:** [https://www.linkedin.com/in/yunus-barış-47b7302a7/](https://www.linkedin.com/in/yunus-barış-47b7302a7/)
-- **GitHub:** [https://github.com/barisyunus29-blip](https://github.com/barisyunus29-blip)
+Projeyi indirdikten sonra herhangi bir derleme adimi gerekmez. `index.html` dosyasini tarayicida acabilirsiniz.
+Yerelde JSON dosyasi `fetch()` ile okundugu icin en sorunsuz test icin basit bir local server kullanilabilir:
+```bash
+python -m http.server 8000
+```
+Ardindan tarayicida `http://localhost:8000` adresine gidin.
+## Iletisim
+- Yunus Baris
+- E-posta: baris.yunus@ogr.ahievran.edu.tr
+- LinkedIn: https://www.linkedin.com/in/yunus-barış-47b7302a7/
+- GitHub: https://github.com/barisyunus29-blip
