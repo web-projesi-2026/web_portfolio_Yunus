@@ -14,12 +14,14 @@
         .project-card {
             position: relative;
         }
+
         .project-toolbar {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
             gap: 14px;
             margin: 0 0 44px;
         }
+
         .project-toolbar input,
         .project-toolbar select {
             width: 100%;
@@ -31,15 +33,18 @@
             font-family: inherit;
             outline: none;
         }
+
         .project-toolbar select option {
             background: #141414;
             color: #fff;
         }
+
         .project-toolbar input:focus,
         .project-toolbar select:focus {
             border-color: #e63946;
             box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
         }
+
         .project-empty-message {
             display: none;
             border: 1px dashed rgba(255, 255, 255, 0.16);
@@ -49,6 +54,8 @@
             text-align: center;
             margin-top: 24px;
         }
+
+
         .favorite-btn {
             position: absolute;
             top: 20px;
@@ -68,16 +75,19 @@
             z-index: 10;
             font-family: inherit;
         }
+
         .favorite-btn:hover {
             background: rgba(230, 57, 70, 0.25);
             border-color: #e63946;
             transform: scale(1.1);
         }
+
         .favorite-btn.active {
             background: #e63946;
             color: #fff;
             box-shadow: 0 0 20px rgba(230, 57, 70, 0.6);
         }
+
         /* Navbar Favori Dropdown */
         .navbar-favorites {
             position: relative;
@@ -85,5 +95,983 @@
             align-items: center;
             gap: 10px;
         }
+
         .favorites-toggle-btn {
             display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(230, 57, 70, 0.1);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            color: #e63946;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .favorites-toggle-btn:hover {
+            background: rgba(230, 57, 70, 0.2);
+            border-color: #e63946;
+            transform: translateY(-2px);
+        }
+
+        /* Dropdown Menü */
+        .favorites-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 10px;
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            min-width: 350px;
+            max-height: 500px;
+            overflow-y: auto;
+            display: none;
+            z-index: 2001;
+            animation: dropdownSlideDown 0.3s ease-out;
+        }
+
+        .favorites-dropdown.active {
+            display: block;
+        }
+
+        @keyframes dropdownSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dropdown-header {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dropdown-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+
+        .dropdown-close-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+
+        .dropdown-close-btn:hover {
+            color: #fff;
+        }
+
+        .dropdown-content {
+            padding: 12px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .dropdown-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(230, 57, 70, 0.1);
+            border-color: rgba(230, 57, 70, 0.3);
+        }
+
+        .dropdown-item-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(230, 57, 70, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #e63946;
+            flex-shrink: 0;
+        }
+
+        .dropdown-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .dropdown-item-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-item-remove {
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .dropdown-item-remove:hover {
+            background: rgba(230, 57, 70, 0.3);
+            color: #e63946;
+        }
+
+        .dropdown-empty {
+            padding: 40px 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .dropdown-empty i {
+            font-size: 2rem;
+            color: #e63946;
+            margin-bottom: 12px;
+            display: block;
+            opacity: 0.3;
+        }
+
+        .dropdown-footer {
+            padding: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 8px;
+        }
+
+        .dropdown-footer-btn {
+            flex: 1;
+            padding: 10px;
+            background: rgba(230, 57, 70, 0.1);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+            color: #e63946;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .dropdown-footer-btn:hover {
+            background: rgba(230, 57, 70, 0.2);
+            border-color: #e63946;
+        }
+
+        /* Favoriler Bölümü */
+        .favorites-section {
+            margin-top: 100px;
+            padding-top: 60px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .favorites-header {
+            margin-bottom: 50px;
+        }
+
+        .favorites-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .favorites-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+
+        .favorites-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .favorites-empty i {
+            font-size: 3rem;
+            color: #e63946;
+            margin-bottom: 20px;
+            display: block;
+            opacity: 0.5;
+        }
+
+        .favorites-empty p {
+            font-size: 1.1rem;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .clear-favorites-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(230, 57, 70, 0.1);
+            border: 1px solid rgba(230, 57, 70, 0.3);
+            color: #e63946;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .clear-favorites-btn:hover {
+            background: rgba(230, 57, 70, 0.2);
+            border-color: #e63946;
+        }
+
+        .favorites-counter {
+            display: inline-block;
+            background: #e63946;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        /* NOTIFICATION STİLLERİ */
+        #notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .notification-item {
+            background: linear-gradient(135deg, #e63946, #c12a35);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 320px;
+            animation: slideInRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .notification-item:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification-icon {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .notification-text {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .notification-message {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(400px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(400px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-toolbar {
+                grid-template-columns: 1fr;
+            }
+
+            .favorites-dropdown {
+                min-width: 300px;
+            }
+
+            .favorites-toggle-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .notification-item {
+                min-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- 1. PRELOADER -->
+<div id="preloader">
+    <div class="spinner"></div>
+</div>
+
+<!-- 2. LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+    <span class="close-button">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="">
+</div>
+
+<!-- 3. PARALLAX -->
+<section class="parallax-section">
+    <div class="floating-particles"></div>
+    <div class="parallax-container">
+        <h2 class="hero-title-animated">Yunus Barış</h2>
+        <p class="subtitle-animated">Geleceği kodluyoruz.</p>
+    </div>
+</section>
+
+    <!-- ÖZEL İMLEÇ -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+
+    <!-- NOTIFICATION CONTAINER -->
+    <div id="notification-container"></div>
+
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="nav-logo">YB<span class="dot">.</span></a>
+                                                <ul class="nav-links" id="navLinks">
+                <li><a href="../index.html">Ana Sayfa</a></li>
+                <li><a href="about.html">Hakkımda</a></li>
+                <li><a href="skills.html">Beceriler</a></li>
+                <li><a href="experience.html">Deneyim</a></li>
+                <li><a href="education.html">Eğitim</a></li>
+                <li><a href="project.html" class="active">Projeler</a></li>
+                <li><a href="data.html">Favoriler</a></li>                                   
+                <li><a href="gallery.html">Galeri</a></li>
+                <li><a href="contact.html">İletişim</a></li>
+            </ul>
+            <div class="nav-socials">
+                <!-- Navbar Favori Dropdown -->
+                <div class="navbar-favorites">
+                    <button class="favorites-toggle-btn" id="favorites-toggle-btn">
+                        <i class="fas fa-heart"></i>
+                        <span id="navbar-favorites-count">0</span>
+                    </button>
+                    <div class="favorites-dropdown" id="favorites-dropdown">
+                        <div class="dropdown-header">
+                            <h3>Favori Projelerim</h3>
+                            <button class="dropdown-close-btn" id="dropdown-close-btn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="dropdown-content" id="dropdown-content">
+                            <div class="dropdown-empty">
+                                <i class="far fa-heart"></i>
+                                <p>Henüz favori yok</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer" id="dropdown-footer" style="display: none;">
+                            <button class="dropdown-footer-btn" id="view-all-favorites-btn">
+                                <i class="fas fa-list"></i> Tümünü Gör
+                            </button>
+                            <button class="dropdown-footer-btn" id="clear-all-favorites-btn">
+                                <i class="fas fa-trash"></i> Temizle
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://github.com/barisyunus29-blip" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="page-container">
+
+            <!-- SAYFA BAŞLIĞI -->
+            <div class="page-header fade-in-up">
+                <span class="page-header-label">Portfolyo</span>
+                <h1>Proje<span class="highlight">lerim</span></h1>
+                <div class="page-header-line"></div>
+            </div>
+
+
+            <section class="project-toolbar fade-in-up delay-1" aria-label="Proje filtreleri">
+                <input id="project-search" type="search" placeholder="Proje ara...">
+                <select id="project-category">
+                    <option value="all">T?m kategoriler</option>
+                    <option value="Web">Web</option>
+                    <option value="Masa?st?">Masa?st?</option>
+                    <option value="API">API</option>
+                    <option value="?retkenlik">?retkenlik</option>
+                </select>
+                <select id="project-sort">
+                    <option value="az">Ada g?re A-Z</option>
+                    <option value="za">Ada g?re Z-A</option>
+                </select>
+            </section>
+
+            <!-- PROJELER GRID -->
+            <div class="projects-grid fade-in-up delay-1" id="projects-grid">
+                
+                <!-- Proje 1 -->
+                <div class="project-card glow-card" data-project-id="1" data-title="E-Ticaret Sitesi" data-category="Web" data-search="E-Ticaret Sitesi PHP MySQL JavaScript Web sepet y?netici paneli">
+                    <button class="favorite-btn" data-project-id="1" title="Favorilere Ekle">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-link">
+                        <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <h3>E-Ticaret Sitesi</h3>
+                        <p>PHP ve MySQL kullanılarak geliştirilmiş, dinamik sepet sistemi ve yönetici paneli bulunan kapsamlı bir e-ticaret platformu.</p>
+                        <div class="project-link-hint">
+                            <span>GitHub'da Görüntüle</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Proje 2 -->
+                <div class="project-card glow-card" data-project-id="2" data-title="Stok Takip Sistemi" data-category="Masa?st?" data-search="Stok Takip Sistemi C# SQL Server Windows Forms Masa?st? stok sat?? rapor">
+                    <button class="favorite-btn" data-project-id="2" title="Favorilere Ekle">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-link">
+                        <div class="project-icon"><i class="fas fa-desktop"></i></div>
+                        <h3>Stok Takip Sistemi</h3>
+                        <p>C# ve SQL Server tabanlı, işletmelerin ürün stoklarını, satışlarını ve raporlarını yönetebileceği masaüstü uygulaması.</p>
+                        <div class="project-link-hint">
+                            <span>GitHub'da Görüntüle</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Proje 3 -->
+                <div class="project-card glow-card" data-project-id="3" data-title="Hava Durumu Uygulamas?" data-category="API" data-search="Hava Durumu Uygulamas? OpenWeather API JavaScript CSS">
+                    <button class="favorite-btn" data-project-id="3" title="Favorilere Ekle">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-link">
+                        <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h3>Hava Durumu Uygulaması</h3>
+                        <p>OpenWeather API kullanarak anlık hava durumu verilerini modern bir arayüzle sunan JavaScript tabanlı web uygulaması.</p>
+                        <div class="project-link-hint">
+                            <span>GitHub'da Görüntüle</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Proje 4 -->
+                <div class="project-card glow-card" data-project-id="4" data-title="G?rev Y?netim Arac?" data-category="?retkenlik" data-search="G?rev Y?netim Arac? JavaScript localStorage ajanda ?retkenlik g?rev">
+                    <button class="favorite-btn" data-project-id="4" title="Favorilere Ekle">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    <a href="https://github.com/barisyunus29-blip" target="_blank" class="project-link">
+                        <div class="project-icon"><i class="fas fa-tasks"></i></div>
+                        <h3>Görev Yönetim Aracı</h3>
+                        <p>Kullanıcıların günlük işlerini planlayabileceği, sürükle-bırak özellikli ve yerel depolama destekli modern bir ajanda.</p>
+                        <div class="project-link-hint">
+                            <span>GitHub'da Görüntüle</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div class="project-empty-message" id="project-empty-message">Araman?za uygun proje bulunamad?.</div>
+
+
+        </div>
+    </main>
+
+    <!-- AI Chatbot -->
+    <div id="ai-chat-container">
+        <div class="ai-chat-header">
+            <span><i class="fas fa-robot"></i> AI Asistan</span>
+            <button id="close-chat"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="ai-chat-body">
+            <div class="ai-message">Merhaba! Ben Yunus'un AI asistanıyım. Size nasıl yardımcı olabilirim?</div>
+        </div>
+        <div class="ai-chat-footer">
+            <input type="text" id="ai-input" placeholder="Bir şeyler sorun...">
+            <button id="send-ai" style="background:#e63946;border:none;color:#fff;padding:12px 18px;border-radius:50px;cursor:pointer;font-family:inherit;">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    <button id="ai-chat-toggle"><i class="fas fa-robot"></i></button>
+
+
+    <footer>
+        <p>&copy; 2026 Yunus Barış. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
+    <script src="../assets/js/app.js"></script>
+    
+    <!-- Favorileme Sistemi Script (FINAL - Modern Notifications ile) -->
+    <script>
+        class FavoritesManager {
+            constructor() {
+                this.storageKey = 'projectFavorites';
+                this.clientKey = 'portfolioClientId';
+                this.firebaseConfig = {
+                    apiKey: "AIzaSyBAF6gV5hL5l1GkvgXSX481sFV90-UBf8w",
+                    authDomain: "web-portfolio-odev.firebaseapp.com",
+                    databaseURL: "https://web-portfolio-odev-default-rtdb.firebaseio.com",
+                    projectId: "web-portfolio-odev",
+                    storageBucket: "web-portfolio-odev.firebasestorage.app",
+                    messagingSenderId: "675622159036",
+                    appId: "1:675622159036:web:d29f8079123b4aa6e446b9"
+                };
+                this.favorites = this.loadFavorites();
+                this.favoritesRef = null;
+                this.projectData = {
+                    1: { title: 'E-Ticaret Sitesi', icon: 'fas fa-shopping-cart' },
+                    2: { title: 'Stok Takip Sistemi', icon: 'fas fa-desktop' },
+                    3: { title: 'Hava Durumu Uygulaması', icon: 'fas fa-mobile-alt' },
+                    4: { title: 'Görev Yönetim Aracı', icon: 'fas fa-tasks' }
+                };
+                this.init();
+                this.connectFirebase();
+            }
+
+            /**
+             * LocalStorage'dan favorileri yükle
+             */
+            loadFavorites() {
+                try {
+                    const stored = localStorage.getItem(this.storageKey);
+                    return stored ? JSON.parse(stored) : [];
+                } catch (error) {
+                    console.error('Favoriler yüklenirken hata:', error);
+                    return [];
+                }
+            }
+
+            /**
+             * Favorileri LocalStorage'a kaydet
+             */
+            saveFavorites() {
+                try {
+                    localStorage.setItem(this.storageKey, JSON.stringify(this.favorites));
+                    if (this.favoritesRef) {
+                        this.favoritesRef.set({
+                            items: this.favorites,
+                            updatedAt: new Date().toISOString()
+                        });
+                    }
+                } catch (error) {
+                    console.error('Favoriler kaydedilirken hata:', error);
+                }
+            }
+
+            getClientId() {
+                let id = localStorage.getItem(this.clientKey);
+                if (!id) {
+                    id = `visitor-${Date.now()}-${Math.floor(Math.random() * 100000)}`;
+                    localStorage.setItem(this.clientKey, id);
+                }
+                return id;
+            }
+
+            connectFirebase() {
+                if (!window.firebase) return;
+                try {
+                    if (!firebase.apps.length) {
+                        firebase.initializeApp(this.firebaseConfig);
+                    }
+                    this.favoritesRef = firebase.database().ref(`favoriteUsers/${this.getClientId()}/favorites`);
+                    this.favoritesRef.once('value').then(snapshot => {
+                        const data = snapshot.val();
+                        if (data && Array.isArray(data.items) && data.items.length > 0) {
+                            this.favorites = [...new Set([...this.favorites, ...data.items])];
+                            localStorage.setItem(this.storageKey, JSON.stringify(this.favorites));
+                            this.updateUI();
+                        }
+                        this.saveFavorites();
+                    });
+                } catch (error) {
+                    console.error('Firebase bağlantısı kurulamadı:', error);
+                }
+            }
+
+            /**
+             * Modern notification göster
+             */
+            showNotification(title, message, icon) {
+                const container = document.getElementById('notification-container');
+                
+                const notification = document.createElement('div');
+                notification.className = 'notification-item';
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <div class="notification-icon">${icon}</div>
+                        <div class="notification-text">
+                            <div class="notification-title">${title}</div>
+                            <div class="notification-message">${message}</div>
+                        </div>
+                        <button class="notification-close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+
+                const closeBtn = notification.querySelector('.notification-close');
+                closeBtn.addEventListener('click', () => {
+                    notification.style.animation = 'slideOutRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    setTimeout(() => notification.remove(), 400);
+                });
+
+                container.appendChild(notification);
+
+                // Otomatik kapat (4 saniye)
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.style.animation = 'slideOutRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                        setTimeout(() => notification.remove(), 400);
+                    }
+                }, 4000);
+            }
+
+            /**
+             * Projeyi favorilere ekle veya çıkar
+             */
+            toggleFavorite(projectId) {
+                const index = this.favorites.indexOf(projectId);
+                const project = this.projectData[projectId];
+
+                if (index > -1) {
+                    this.favorites.splice(index, 1);
+                    this.showNotification(
+                        'Favorilerden Çıkarıldı',
+                        `"${project.title}" favorilerden çıkarıldı`,
+                        '✕'
+                    );
+                } else {
+                    this.favorites.push(projectId);
+                    this.showNotification(
+                        'Favorilere Eklendi',
+                        `"${project.title}" favorilere eklendi`,
+                        '❤️'
+                    );
+                }
+                this.saveFavorites();
+                this.updateUI();
+            }
+
+            /**
+             * Projenin favoride olup olmadığını kontrol et
+             */
+            isFavorite(projectId) {
+                return this.favorites.includes(projectId);
+            }
+
+            /**
+             * Tüm favorileri temizle
+             */
+            clearAllFavorites() {
+                if (confirm('Tüm favorileri silmek istediğinize emin misiniz?')) {
+                    this.favorites = [];
+                    this.saveFavorites();
+                    this.updateUI();
+                    this.showNotification(
+                        'Tüm Favoriler Silindi',
+                        'Tüm favorilere eklediğiniz projeler temizlendi',
+                        '🗑️'
+                    );
+                }
+            }
+
+            /**
+             * Sistemin başlatılması
+             */
+            init() {
+                this.setupFavoriteButtons();
+                this.setupDropdownToggle();
+                this.setupDropdownButtons();
+                this.updateUI();
+            }
+
+            /**
+             * Favori butonlarını ayarla
+             */
+            setupFavoriteButtons() {
+                const favoriteButtons = document.querySelectorAll('.favorite-btn');
+                favoriteButtons.forEach(btn => {
+                    const projectId = parseInt(btn.getAttribute('data-project-id'));
+                    
+                    if (this.isFavorite(projectId)) {
+                        btn.classList.add('active');
+                        btn.innerHTML = '<i class="fas fa-heart"></i>';
+                    }
+
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.toggleFavorite(projectId);
+                    });
+                });
+            }
+
+            /**
+             * Dropdown toggle'ı ayarla
+             */
+            setupDropdownToggle() {
+                const toggleBtn = document.getElementById('favorites-toggle-btn');
+                const dropdown = document.getElementById('favorites-dropdown');
+                const closeBtn = document.getElementById('dropdown-close-btn');
+
+                toggleBtn.addEventListener('click', () => {
+                    dropdown.classList.toggle('active');
+                });
+
+                closeBtn.addEventListener('click', () => {
+                    dropdown.classList.remove('active');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.navbar-favorites')) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            }
+
+            /**
+             * Dropdown butonlarını ayarla
+             */
+            setupDropdownButtons() {
+                const viewAllBtn = document.getElementById('view-all-favorites-btn');
+                const clearAllBtn = document.getElementById('clear-all-favorites-btn');
+
+                viewAllBtn.addEventListener('click', () => {
+                    document.getElementById('favorites-dropdown').classList.remove('active');
+                    window.location.href = 'data.html';
+                });
+
+                clearAllBtn.addEventListener('click', () => {
+                    this.clearAllFavorites();
+                    document.getElementById('favorites-dropdown').classList.remove('active');
+                });
+            }
+
+            /**
+             * Tüm UI öğelerini güncelle
+             */
+            updateUI() {
+                this.updateFavoriteButtons();
+                this.updateNavbarDropdown();
+            }
+
+            /**
+             * Favori butonlarının durumunu güncelle
+             */
+            updateFavoriteButtons() {
+                const favoriteButtons = document.querySelectorAll('.favorite-btn');
+                favoriteButtons.forEach(btn => {
+                    const projectId = parseInt(btn.getAttribute('data-project-id'));
+                    if (this.isFavorite(projectId)) {
+                        btn.classList.add('active');
+                        btn.innerHTML = '<i class="fas fa-heart"></i>';
+                        btn.title = 'Favorilerden Çıkar';
+                    } else {
+                        btn.classList.remove('active');
+                        btn.innerHTML = '<i class="far fa-heart"></i>';
+                        btn.title = 'Favorilere Ekle';
+                    }
+                });
+            }
+
+            /**
+             * Navbar dropdown'u güncelle
+             */
+            updateNavbarDropdown() {
+                const navbarCount = document.getElementById('navbar-favorites-count');
+                const dropdownContent = document.getElementById('dropdown-content');
+                const dropdownFooter = document.getElementById('dropdown-footer');
+
+                navbarCount.textContent = this.favorites.length;
+
+                if (this.favorites.length === 0) {
+                    dropdownContent.innerHTML = `
+                        <div class="dropdown-empty">
+                            <i class="far fa-heart"></i>
+                            <p>Henüz favori yok</p>
+                        </div>
+                    `;
+                    dropdownFooter.style.display = 'none';
+                } else {
+                    const items = this.favorites.map(id => {
+                        const project = this.projectData[id];
+                        return `
+                            <div class="dropdown-item">
+                                <div class="dropdown-item-icon">
+                                    <i class="${project.icon}"></i>
+                                </div>
+                                <div class="dropdown-item-info">
+                                    <div class="dropdown-item-title">${project.title}</div>
+                                </div>
+                                <button class="dropdown-item-remove" data-project-id="${id}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        `;
+                    }).join('');
+
+                    dropdownContent.innerHTML = items;
+                    dropdownFooter.style.display = 'flex';
+
+                    document.querySelectorAll('.dropdown-item-remove').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const projectId = parseInt(btn.getAttribute('data-project-id'));
+                            this.toggleFavorite(projectId);
+                        });
+                    });
+                }
+            }
+
+        }
+
+        // Sayfa yüklendiğinde başlat
+        document.addEventListener('DOMContentLoaded', () => {
+            window.favoritesManager = new FavoritesManager();
+        });
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('project-search');
+            const categorySelect = document.getElementById('project-category');
+            const sortSelect = document.getElementById('project-sort');
+            const grid = document.getElementById('projects-grid');
+            const emptyMessage = document.getElementById('project-empty-message');
+            if (!searchInput || !categorySelect || !sortSelect || !grid) return;
+            const cards = Array.from(grid.querySelectorAll('.project-card[data-project-id]'));
+            const filterProjects = () => {
+                const searchTerm = searchInput.value.toLocaleLowerCase('tr-TR');
+                const category = categorySelect.value;
+                const sortedCards = [...cards].sort((a, b) => {
+                    const first = a.dataset.title || '';
+                    const second = b.dataset.title || '';
+                    return sortSelect.value === 'za' ? second.localeCompare(first, 'tr') : first.localeCompare(second, 'tr');
+                });
+                let visibleCount = 0;
+                sortedCards.forEach(card => {
+                    const matchesSearch = (card.dataset.search || '').toLocaleLowerCase('tr-TR').includes(searchTerm);
+                    const matchesCategory = category === 'all' || card.dataset.category === category;
+                    const isVisible = matchesSearch && matchesCategory;
+                    card.style.display = isVisible ? '' : 'none';
+                    if (isVisible) visibleCount += 1;
+                    grid.appendChild(card);
+                });
+                emptyMessage.style.display = visibleCount ? 'none' : 'block';
+            };
+            [searchInput, categorySelect, sortSelect].forEach(control => {
+                control.addEventListener('input', filterProjects);
+                control.addEventListener('change', filterProjects);
+            });
+            filterProjects();
+        });
+    </script>
+</body>
+</html>
+
