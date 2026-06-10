@@ -1,100 +1,89 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projeler | Yunus Barış</title>
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    .project-toolbar{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin:0 0 44px}
-    .project-toolbar input,.project-toolbar select{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:8px;padding:14px 16px;font-family:inherit;outline:none}
-    .project-toolbar select option{background:#141414;color:#fff}
-    .project-card{position:relative}
-    .favorite-btn{position:absolute;top:20px;right:20px;width:45px;height:45px;background:rgba(230,57,70,.15);border:2px solid rgba(230,57,70,.3);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#e63946;z-index:10}
-    .favorite-btn.active{background:#e63946;color:#fff;box-shadow:0 0 20px rgba(230,57,70,.6)}
-    .project-tag{display:inline-flex;border:1px solid rgba(230,57,70,.45);border-radius:50px;color:#e63946;padding:6px 10px;font-size:13px;font-weight:700;margin-bottom:12px}
-    .project-empty-message{display:none;border:1px dashed rgba(255,255,255,.16);border-radius:8px;color:#bbb;padding:34px;text-align:center}
-    .nav-favorite-link{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(230,57,70,.35);background:rgba(230,57,70,.12);border-radius:50px;color:#e63946;text-decoration:none;padding:10px 16px;font-weight:700}
-    @media(max-width:760px){.project-toolbar{grid-template-columns:1fr}}
-  </style>
-</head>
-<body>
-  <div id="preloader"><div class="spinner"></div></div>
-  <div class="cursor" id="cursor"></div><div class="cursor-trail" id="cursorTrail"></div>
-  <header>
-    <nav class="navbar">
-      <a href="../index.html" class="nav-logo">YB<span class="dot">.</span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="../index.html">Ana Sayfa</a></li>
-        <li><a href="about.html">Hakkımda</a></li>
-        <li><a href="skills.html">Beceriler</a></li>
-        <li><a href="experience.html">Deneyim</a></li>
-        <li><a href="education.html">Eğitim</a></li>
-        <li><a href="project.html" class="active">Projeler</a></li>
-        <li><a href="data.html">Favoriler</a></li>
-        <li><a href="gallery.html">Galeri</a></li>
-        <li><a href="contact.html">İletişim</a></li>
-      </ul>
-      <div class="nav-socials">
-        <a class="nav-favorite-link" href="data.html"><i class="fas fa-heart"></i> <span id="favorite-count">0</span></a>
-        <a href="https://github.com/barisyunus29-blip" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/yunus-barış-47b7302a7/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-      </div>
-      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-    </nav>
-  </header>
-  <main class="page-wrapper">
-    <div class="page-container">
-      <div class="page-header fade-in-up">
-        <span class="page-header-label">Portfolyo</span>
-        <h1>Proje<span class="highlight">lerim</span></h1>
-        <div class="page-header-line"></div>
-      </div>
-      <section class="project-toolbar fade-in-up delay-1">
-        <input id="project-search" type="search" placeholder="Proje ara...">
-        <select id="project-category">
-          <option value="all">Tüm kategoriler</option>
-          <option value="Web">Web</option>
-          <option value="Masaüstü">Masaüstü</option>
-          <option value="API">API</option>
-          <option value="Üretkenlik">Üretkenlik</option>
-        </select>
-        <select id="project-sort">
-          <option value="az">Ada göre A-Z</option>
-          <option value="za">Ada göre Z-A</option>
-        </select>
-      </section>
-      <section class="projects-grid fade-in-up delay-1" id="projects-grid"></section>
-      <div class="project-empty-message" id="project-empty-message">Aramanıza uygun proje bulunamadı.</div>
-    </div>
-  </main>
-  <div id="ai-chat-container">
-    <div class="ai-chat-header"><span><i class="fas fa-robot"></i> AI Asistan</span><button id="close-chat"><i class="fas fa-times"></i></button></div>
-    <div id="ai-chat-body"><div class="ai-message">Merhaba! Ben Yunus'un AI asistanıyım. Size nasıl yardımcı olabilirim?</div></div>
-    <div class="ai-chat-footer"><input type="text" id="ai-input" placeholder="Bir şeyler sorun..."><button id="send-ai" style="background:#e63946;border:none;color:#fff;padding:12px 18px;border-radius:50px;cursor:pointer"><i class="fas fa-paper-plane"></i></button></div>
-  </div>
-  <button id="ai-chat-toggle"><i class="fas fa-robot"></i></button>
-  <footer><p>&copy; 2026 Yunus Barış. Tüm Hakları Saklıdır.</p></footer>
-  <script src="../assets/js/app.js"></script>
-  <script>
-    const projects=[
-      {id:1,title:"E-Ticaret Sitesi",description:"PHP ve MySQL kullanılarak geliştirilmiş, dinamik sepet sistemi ve yönetici paneli bulunan kapsamlı bir e-ticaret platformu.",category:"Web",icon:"fa-shopping-cart",link:"https://github.com/barisyunus29-blip",search:"E-Ticaret Sitesi PHP MySQL JavaScript Web sepet yönetici paneli"},
-      {id:2,title:"Stok Takip Sistemi",description:"C# ve SQL Server tabanlı, işletmelerin ürün stoklarını, satışlarını ve raporlarını yönetebileceği masaüstü uygulaması.",category:"Masaüstü",icon:"fa-desktop",link:"https://github.com/barisyunus29-blip",search:"Stok Takip Sistemi C# SQL Server Windows Forms Masaüstü stok satış rapor"},
-      {id:3,title:"Hava Durumu Uygulaması",description:"OpenWeather API kullanarak anlık hava durumu verilerini modern bir arayüzle sunan JavaScript tabanlı web uygulaması.",category:"API",icon:"fa-cloud-sun",link:"https://github.com/barisyunus29-blip",search:"Hava Durumu Uygulaması OpenWeather API JavaScript CSS"},
-      {id:4,title:"Görev Yönetim Aracı",description:"Kullanıcıların günlük işlerini planlayabileceği, tamamlanan görevleri takip edebileceği ve localStorage destekli modern bir ajanda.",category:"Üretkenlik",icon:"fa-tasks",link:"https://github.com/barisyunus29-blip",search:"Görev Yönetim Aracı JavaScript localStorage ajanda üretkenlik görev"}
-    ];
-    const key="projectFavorites",grid=document.getElementById("projects-grid"),empty=document.getElementById("project-empty-message"),search=document.getElementById("project-search"),cat=document.getElementById("project-category"),sort=document.getElementById("project-sort"),count=document.getElementById("favorite-count");
-    let favorites=JSON.parse(localStorage.getItem(key)||"[]");
-    function save(){localStorage.setItem(key,JSON.stringify(favorites));count.textContent=favorites.length}
-    function isFav(id){return favorites.includes(id)}
-    function toggle(id){favorites=isFav(id)?favorites.filter(x=>x!==id):[...favorites,id];save();render()}
-    function card(p){let active=isFav(p.id),el=document.createElement("div");el.className="project-card glow-card";el.dataset.id=p.id;el.innerHTML=`<button class="favorite-btn ${active?"active":""}" title="${active?"Favorilerden Çıkar":"Favorilere Ekle"}"><i class="${active?"fas":"far"} fa-heart"></i></button><a href="${p.link}" target="_blank" rel="noopener" class="project-link"><div class="project-icon"><i class="fas ${p.icon}"></i></div><span class="project-tag">${p.category}</span><h3>${p.title}</h3><p>${p.description}</p><div class="project-link-hint"><span>GitHub'da Görüntüle</span><i class="fas fa-arrow-right"></i></div></a>`;el.querySelector("button").onclick=e=>{e.preventDefault();e.stopPropagation();toggle(p.id)};return el}
-    function filtered(){let q=search.value.toLocaleLowerCase("tr-TR");return projects.filter(p=>p.search.toLocaleLowerCase("tr-TR").includes(q)&&(cat.value==="all"||p.category===cat.value)).sort((a,b)=>sort.value==="za"?b.title.localeCompare(a.title,"tr"):a.title.localeCompare(b.title,"tr"))}
-    function render(){grid.innerHTML="";let list=filtered();list.forEach(p=>grid.appendChild(card(p)));empty.style.display=list.length?"none":"block";save()}
-    [search,cat,sort].forEach(x=>{x.oninput=render;x.onchange=render});
-    render();
-  </script>
-</body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeler | Yunus Barış</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Favorileme Özelliği Stilleri */
+        .project-card {
+            position: relative;
+        }
+        .project-toolbar {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 14px;
+            margin: 0 0 44px;
+        }
+        .project-toolbar input,
+        .project-toolbar select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-family: inherit;
+            outline: none;
+        }
+        .project-toolbar select option {
+            background: #141414;
+            color: #fff;
+        }
+        .project-toolbar input:focus,
+        .project-toolbar select:focus {
+            border-color: #e63946;
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+        }
+        .project-empty-message {
+            display: none;
+            border: 1px dashed rgba(255, 255, 255, 0.16);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.62);
+            padding: 34px;
+            text-align: center;
+            margin-top: 24px;
+        }
+        .favorite-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(230, 57, 70, 0.15);
+            border: 2px solid rgba(230, 57, 70, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #e63946;
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-family: inherit;
+        }
+        .favorite-btn:hover {
+            background: rgba(230, 57, 70, 0.25);
+            border-color: #e63946;
+            transform: scale(1.1);
+        }
+        .favorite-btn.active {
+            background: #e63946;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.6);
+        }
+        /* Navbar Favori Dropdown */
+        .navbar-favorites {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .favorites-toggle-btn {
+            display: flex;
