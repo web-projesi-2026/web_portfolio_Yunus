@@ -11,7 +11,96 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
+        .data-toolbar {<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoriler | Yunus Barış</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
         .data-toolbar {
+            display: grid;
+            grid-template-columns: minmax(220px, 2fr) minmax(160px, 1fr) minmax(160px, 1fr);
+            gap: 14px;
+            margin: 0 0 34px;
+        }
+        .data-toolbar input,
+        .data-toolbar select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-family: inherit;
+            outline: none;
+        }
+        .data-toolbar select option {
+            background: #141414;
+            color: #fff;
+        }
+        .data-toolbar input:focus,
+        .data-toolbar select:focus {
+            border-color: #e63946;
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+        }
+        .project-card {
+            position: relative;
+        }
+        .favorite-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(230, 57, 70, 0.15);
+            border: 2px solid rgba(230, 57, 70, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #e63946;
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-family: inherit;
+        }
+        .favorite-btn:hover {
+            background: rgba(230, 57, 70, 0.25);
+            border-color: #e63946;
+            transform: scale(1.1);
+        }
+        .favorite-btn.active {
+            background: #e63946;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.6);
+        }
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0 0;
+        }
+        .project-meta span {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px;
+            padding: 7px 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.78rem;
+        }
+        .category-badge {
+            display: inline-flex;
+            width: fit-content;
+            margin: 0 0 12px;
+            border: 1px solid rgba(230, 57, 70, 0.45);
+            border-radius: 50px;
             display: grid;
             grid-template-columns: minmax(220px, 2fr) minmax(160px, 1fr) minmax(160px, 1fr);
             gap: 14px;
