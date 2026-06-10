@@ -1,94 +1,90 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Favoriler | Yunus Baris</title>
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:#111;color:#fff;font-family:Arial,sans-serif;min-height:100vh}
-    header{background:#181818;border-bottom:1px solid #333}
-    nav,main{max-width:1100px;margin:auto;padding:20px}
-    nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-    a{color:inherit}.logo{text-decoration:none;font-size:22px;font-weight:800}.logo span,.highlight{color:#e63946}
-    .nav-mini{display:flex;gap:14px;align-items:center;flex-wrap:wrap;color:#ddd;font-size:14px}.nav-mini a{text-decoration:none}.nav-mini a:hover{color:#e63946}
-    .favorite-summary{background:rgba(230,57,70,.14);border:1px solid rgba(230,57,70,.45);border-radius:999px;padding:10px 16px;font-weight:700}
-    .page-header{margin:28px 0}.page-header h1{font-size:clamp(34px,7vw,68px)}.page-header p{color:#bbb;line-height:1.6;max-width:760px;margin-top:10px}
-    .database-note{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:24px 0}
-    .database-note div{border:1px solid #333;background:#181818;border-radius:8px;padding:14px;color:#ccc}
-    .database-note strong{display:block;color:#fff;margin-bottom:6px}
-    .data-controls{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin:28px 0}
-    .data-controls input,.data-controls select{width:100%;background:#181818;border:1px solid #333;color:#fff;border-radius:8px;padding:13px 14px;font:inherit;outline:none}
-    .data-controls input:focus,.data-controls select:focus{border-color:#e63946;box-shadow:0 0 0 3px rgba(230,57,70,.12)}
-    .projects-grid,.favorites-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-    .project-card{position:relative;background:#181818;border:1px solid #333;border-radius:8px;padding:26px;min-height:300px}
-    .favorite-btn{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(230,57,70,.45);background:rgba(230,57,70,.12);color:#e63946;cursor:pointer}
-    .favorite-btn.active{background:#e63946;color:#fff}
-    .project-icon{width:54px;height:54px;display:flex;align-items:center;justify-content:center;background:rgba(230,57,70,.12);color:#e63946;border-radius:8px;font-size:24px;margin-bottom:18px}
-    .project-card h3{font-size:22px;margin-bottom:12px;max-width:calc(100% - 48px)}
-    .project-card p{color:#bbb;line-height:1.55}.tech-list{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
-    .tech-list span,.category-badge{border:1px solid #333;border-radius:999px;padding:7px 10px;color:#ccc;font-size:13px}
-    .category-badge{display:inline-block;border-color:rgba(230,57,70,.45);color:#e63946;margin-bottom:12px}
-    .project-link{color:#e63946;font-weight:700;text-decoration:none}.favorites-section{border-top:1px solid #333;margin-top:50px;padding-top:30px}
-    .section-title-row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
-    .clear-btn,.remove-btn{border:1px solid rgba(230,57,70,.45);border-radius:999px;background:transparent;color:#e63946;padding:10px 14px;cursor:pointer;font-weight:700}
-    .remove-btn{margin-top:16px}.clear-btn:hover,.remove-btn:hover{background:rgba(230,57,70,.12)}
-    .empty-message,.status-message{border:1px dashed #444;border-radius:8px;color:#bbb;padding:28px;text-align:center;grid-column:1/-1}
-    .toast{position:fixed;right:20px;bottom:20px;background:#e63946;color:#fff;border-radius:8px;padding:14px 18px;opacity:0;transform:translateY(16px);transition:.25s;z-index:10}
-    .toast.show{opacity:1;transform:translateY(0)}
-    @media(max-width:760px){.data-controls{grid-template-columns:1fr}}
-  </style>
-</head>
-<body>
-  <header>
-    <nav>
-      <a class="logo" href="../index.html">YB<span>.</span></a>
-      <div class="nav-mini">
-        <a href="../index.html">Ana Sayfa</a>
-        <a href="project.html">Projeler</a>
-        <a href="gallery.html">Galeri</a>
-        <a href="contact.html">Iletisim</a>
-      </div>
-      <div class="favorite-summary"><i class="fas fa-heart"></i> Favoriler: <span id="favorite-count">0</span></div>
-    </nav>
-  </header>
-  <main>
-    <section class="page-header">
-      <h1>Veri <span class="highlight">Odevim</span></h1>
-      <p>Bu sayfada proje verileri JSON dosyasindan okunur, JavaScript ile kartlara donusturulur. Favoriler Firebase Realtime Database ve localStorage uzerinden eklenir, listelenir ve silinir.</p>
-    </section>
-    <section class="database-note" aria-label="Veritabani islemleri">
-      <div><strong>Veri ekleme</strong>Favoriye eklenen proje Firebase veritabanina kaydedilir.</div>
-      <div><strong>Veri listeleme</strong>Kayitli favoriler acilista veritabanindan okunur.</div>
-      <div><strong>Veri silme</strong>Tek favori veya tum favoriler veritabanindan silinebilir.</div>
-    </section>
-    <section class="data-controls" aria-label="Proje filtreleri">
-      <input id="search-input" type="search" placeholder="Proje adi veya teknoloji ara...">
-      <select id="category-filter">
-        <option value="all">Tum kategoriler</option>
-      </select>
-      <select id="sort-select">
-        <option value="name-asc">Ada gore A-Z</option>
-        <option value="name-desc">Ada gore Z-A</option>
-      </select>
-    </section>
-    <div id="projects-grid" class="projects-grid"><div class="status-message">Projeler yukleniyor...</div></div>
-    <section class="favorites-section">
-      <div class="section-title-row">
-        <h2>Favori Projelerim</h2>
-        <button class="clear-btn" type="button" data-clear-favorites><i class="fas fa-trash"></i> Tum Favorileri Sil</button>
-      </div>
-      <div id="favorites-container"><div class="empty-message">Henuz favorilere proje eklemediniz.</div></div>
-    </section>
-  </main>
-  <div id="toast" class="toast"></div>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database-compat.js"></script>
-  <script>
-    const projectsGrid=document.getElementById("projects-grid"),favoritesContainer=document.getElementById("favorites-container"),favoriteCount=document.getElementById("favorite-count"),toast=document.getElementById("toast");
-    const searchInput=document.getElementById("search-input"),categoryFilter=document.getElementById("category-filter"),sortSelect=document.getElementById("sort-select");
-    const storageKey="projectFavorites",clientKey="portfolioClientId";
-    const firebaseConfig={apiKey:"AIzaSyBAF6gV5hL5l1GkvgXSX481sFV90-UBf8w",authDomain:"web-portfolio-odev.firebaseapp.com",databaseURL:"https://web-portfolio-odev-default-rtdb.firebaseio.com",projectId:"web-portfolio-odev",storageBucket:"web-portfolio-odev.firebasestorage.app",messagingSenderId:"675622159036",appId:"1:675622159036:web:d29f8079123b4aa6e446b9"};
-    let projects=[],favorites=[],favoritesRef=null;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoriler | Yunus Barış</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        .data-toolbar {
+            display: grid;
+            grid-template-columns: minmax(220px, 2fr) minmax(160px, 1fr) minmax(160px, 1fr);
+            gap: 14px;
+            margin: 0 0 34px;
+        }
+        .data-toolbar input,
+        .data-toolbar select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-family: inherit;
+            outline: none;
+        }
+        .data-toolbar select option {
+            background: #141414;
+            color: #fff;
+        }
+        .data-toolbar input:focus,
+        .data-toolbar select:focus {
+            border-color: #e63946;
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+        }
+        .project-card {
+            position: relative;
+        }
+        .favorite-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: rgba(230, 57, 70, 0.15);
+            border: 2px solid rgba(230, 57, 70, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #e63946;
+            transition: all 0.3s ease;
+            z-index: 10;
+            font-family: inherit;
+        }
+        .favorite-btn:hover {
+            background: rgba(230, 57, 70, 0.25);
+            border-color: #e63946;
+            transform: scale(1.1);
+        }
+        .favorite-btn.active {
+            background: #e63946;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.6);
+        }
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0 0;
+        }
+        .project-meta span {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50px;
+            padding: 7px 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.78rem;
+        }
+        .category-badge {
+            display: inline-flex;
+            width: fit-content;
+            margin: 0 0 12px;
+            border: 1px solid rgba(230, 57, 70, 0.45);
+            border-radius: 50px;
